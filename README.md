@@ -10,8 +10,12 @@ Each rule family lives in its own file under `styles/Deslop/`:
 
 | File | Catches |
 | --- | --- |
-| `SlopVocab.yml` | Stock words: `delve`, `tapestry`, `plethora`, `myriad`, `multifaceted`, `in today's world`, and more |
+| `SlopVocab.yml` | Stock words: `delve`, `tapestry`, `plethora`, `robust`, `crucial`, `leverage`, `harness the`, `in today's world`, and more |
+| `Substitutions.yml` | One-to-one swaps: `robust`->`strong`, `crucial`->`important`, `comprehend`->`understand`, `utilize`->`use` |
 | `CorporateCliche.yml` | `synergy`, `best-in-class`, `cutting-edge`, `holistic`, `transformative` |
+| `CorporateMetaphor.yml` | `north star`, `boil the ocean`, `low-hanging fruit`, `circle back`, figurative `double-click` |
+| `Hedging.yml` | `honestly`, `I think`, `arguably`, `perhaps`, `somewhat`, `to some extent` |
+| `OpenerCliche.yml` | Stock openers: `In today's`, `In an era of`, `In a world` |
 | `NotJustScaffold.yml` | The `not just X but Y` contrast scaffold |
 | `AntitheticalPair.yml` | `It's not X. It's Y.` sentence pairs |
 | `VagueAttribution.yml` | `experts say`, `research shows`, `it is widely believed` |
@@ -59,6 +63,9 @@ asset is named `Deslop.zip` (capital D) so the extracted folder matches `BasedOn
 on case-sensitive Linux CI.
 
 For a full copy-paste guide including CI setup, see [docs/ADOPTING.md](docs/ADOPTING.md).
+
+For the craft reference behind these rules, the principle, the tests, the hard rules, and
+the blocklist with plainer swaps, see [docs/ANTI-SLOP-STYLE-GUIDE.md](docs/ANTI-SLOP-STYLE-GUIDE.md).
 
 ## Customize
 

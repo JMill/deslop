@@ -126,3 +126,23 @@ Example parallel CI step (add after your existing linter step):
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## 7. Private voice and brand styles (single source of truth)
+
+deslop is the shared public floor: the generic anti-slop rules. Keep voice-specific
+and brand-specific rules out of it and put them in your own private style, then compose:
+
+```ini
+StylesPath = styles
+Packages = https://github.com/JMill/deslop/releases/latest/download/Deslop.zip, https://your-private-host/MyVoice.zip
+[*.{md,mdx}]
+BasedOnStyles = Deslop, MyVoice
+```
+
+`Deslop` is this public package. `MyVoice` is a private style you keep in a private repo
+and sync from a private release zip (a second `Packages` entry), a git submodule, or a
+vendored `styles/MyVoice/` you never publish. Vale merges both at lint time.
+
+Each rule has exactly one home: the generic rules live once here, your private rules live
+once in your private style. They cannot drift, because nothing is copied between them.
+Never paste deslop rules into a private style. Layer the private style on top.
