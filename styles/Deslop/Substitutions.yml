@@ -1,0 +1,14 @@
+extends: substitution
+message: "Use '%s' instead of '%s'."
+level: warning
+ignorecase: true
+swap:
+  underscore: show
+  'delve into': look at
+  robust: strong
+  crucial: important
+  multifaceted: complicated
+  comprehend: understand
+  bolster: strengthen
+  pinpoint: identify
+  utilize: use

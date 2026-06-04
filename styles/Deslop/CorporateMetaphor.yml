@@ -1,0 +1,10 @@
+extends: existence
+message: "Corporate metaphor. Say the literal thing."
+level: warning
+ignorecase: true
+tokens:
+  - 'north\s+star'
+  - 'boil\s+the\s+ocean'
+  - 'low[-\s]hanging\s+fruit'
+  - 'circle\s+back'
+  - 'double[-\s]click(?:ing|ed)?\s+(?:on|into)'
