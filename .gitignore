@@ -1,0 +1,11 @@
+# Vale local cache
+.vale/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor
+*.swp
+.idea/
+.vscode/
