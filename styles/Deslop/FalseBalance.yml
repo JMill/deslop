@@ -1,0 +1,8 @@
+extends: existence
+message: "False balance ('%s'). Take a position or cut the sentence."
+level: warning
+ignorecase: true
+tokens:
+  - 'both\s+have\s+merit'
+  - 'remains\s+to\s+be\s+seen'
+  - 'both\s+perspectives?\s+merit\s+consideration'

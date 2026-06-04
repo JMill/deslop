@@ -1,0 +1,6 @@
+extends: existence
+message: "Antithetical pair ('It's not X. It's Y.'). Fold into one affirmative sentence."
+level: warning
+ignorecase: true
+raw:
+  - "(?:It|This|That|We|They)\\s*'?s?\\s+not\\s+[^.!?]{3,50}[.!]\\s+(?:It|This|That|We|They)(?:'s|\\s+is|\\s+are)\\b"

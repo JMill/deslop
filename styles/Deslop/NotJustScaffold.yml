@@ -1,0 +1,6 @@
+extends: existence
+message: "'not just/only X but Y' is a contrast scaffold. State what it is directly."
+level: warning
+ignorecase: true
+raw:
+  - 'not\s+(?:just|only|merely)\s+.{1,60}?\s+but\s+(?:also\s+)?'

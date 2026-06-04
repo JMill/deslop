@@ -1,0 +1,14 @@
+extends: existence
+message: "'%s' is corporate filler. Name the concrete thing instead."
+level: warning
+ignorecase: true
+tokens:
+  - 'synerg(?:y|ies)'
+  - 'best[-\s]in[-\s]class'
+  - 'world[-\s]class'
+  - 'cutting[-\s]edge'
+  - 'move\s+the\s+needle'
+  - 'unlock\s+value'
+  - 'drive\s+growth'
+  - 'holistic'
+  - 'transform(?:ational|ative)'

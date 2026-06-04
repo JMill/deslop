@@ -1,0 +1,8 @@
+extends: existence
+message: "Filler transition ('%s'). State the point directly."
+level: warning
+ignorecase: true
+tokens:
+  - 'Having\s+(?:examined|explored|discussed|reviewed|considered|analyzed)'
+  - 'it\s+is\s+also\s+worth\s+noting'
+  - 'another\s+(?:important|key|crucial)\s+(?:consideration|factor|point)'

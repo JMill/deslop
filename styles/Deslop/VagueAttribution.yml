@@ -1,0 +1,8 @@
+extends: existence
+message: "Vague attribution ('%s'). Name the source and affiliation."
+level: warning
+ignorecase: true
+tokens:
+  - 'experts?\s+(?:say|argue|suggest|believe|claim)s?'
+  - '(?:research|studies)\s+shows?'
+  - 'it\s+is\s+widely\s+believed'

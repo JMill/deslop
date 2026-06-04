@@ -1,0 +1,34 @@
+extends: existence
+message: "'%s' is an AI-slop tell. Cut it or say the thing plainly."
+level: warning
+ignorecase: true
+tokens:
+  - 'delv(?:e|ing)'
+  - '(?:rich\s+)?tapestry'
+  - 'a\s+testament\s+to'
+  - 'stands\s+as\s+a\s+testament'
+  - 'multifaceted'
+  - 'navigate\s+the\s+complexities'
+  - 'treasure\s+trove'
+  - 'plethora'
+  - 'a\s+myriad\s+of'
+  - 'myriad'
+  - 'boast(?:s|ing)'
+  - 'nestled'
+  - 'ever[-\s](?:evolving|changing)'
+  - 'fast[-\s]paced\s+world'
+  - "in\\s+today\\s*'?s?\\s+world"
+  - 'in\s+an\s+era\s+of'
+  - 'in\s+the\s+age\s+of'
+  - 'at\s+the\s+forefront'
+  - "it\\s*'?s?\\s+worth\\s+noting"
+  - "it\\s*'?s?\\s+important\\s+to\\s+note"
+  - 'when\s+it\s+comes\s+to'
+  - 'needless\s+to\s+say'
+  - 'unlock\s+(?:the\s+)?power'
+  - 'unlock\s+(?:the\s+)?potential'
+  - 'harness\s+(?:the\s+)?power'
+  - 'game[-\s]changer'
+  - 'indelible\s+mark'
+  - 'vibrant'
+  - 'bustling'
