@@ -52,12 +52,14 @@ tokens:
 
 Use `occurrence` for density caps (cap how often a `token` appears in a `scope`, as
 `HollowIntensifier.yml` does) and `substitution` for "prefer X over Y" swaps. A new file is
-picked up automatically once its name is added to `BasedOnStyles`; the rule name is the file
-stem (`Deslop.SlopVocab`). See the [Vale styles docs](https://vale.sh/docs/topics/styles/).
+picked up automatically once it is placed under `styles/Deslop/`, because `.vale.ini` lists
+the `Deslop` style directory in `BasedOnStyles` (you list style directories there, not
+individual rule stems). The rule name is the file stem (`Deslop.SlopVocab`). See the
+[Vale styles docs](https://vale.sh/docs/topics/styles/).
 
 Keep this repo public-safe. Private or brand-specific phrasing does not belong here. Consumers
 add those through composition: a second style directory listed alongside `Deslop` in
-`BasedOnStyles`. The mechanism is documented in [docs/ADOPTING.md](docs/ADOPTING.md) section 7.
+`BasedOnStyles`. The mechanism is documented in [docs/ADOPTING.md](docs/ADOPTING.md) section 5.
 
 ## Commands
 
