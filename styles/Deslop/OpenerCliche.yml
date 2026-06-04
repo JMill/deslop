@@ -1,0 +1,9 @@
+extends: existence
+message: "Opener cliche. Open on the claim."
+level: warning
+ignorecase: true
+tokens:
+  - "^In\\s+today\\s*'?s?"
+  - 'In\s+an\s+era\s+of'
+  - 'In\s+the\s+age\s+of'
+  - 'In\s+a\s+world'

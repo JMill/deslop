@@ -1,0 +1,12 @@
+extends: existence
+message: "Hedging. State the claim or cut it."
+level: warning
+ignorecase: true
+tokens:
+  - '\bhonestly\b'
+  - '\bI\s+think\b'
+  - '\barguably\b'
+  - 'it\s+could\s+be\s+argued'
+  - '\bperhaps\b'
+  - '\bsomewhat\b'
+  - 'to\s+some\s+extent'
