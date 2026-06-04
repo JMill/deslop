@@ -12,3 +12,6 @@ Thumbs.db
 *.swp
 .idea/
 .vscode/
+
+# build artifacts (release assets live on GitHub Releases, not in the repo)
+*.zip
