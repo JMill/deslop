@@ -12,6 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Prepare styles dir
+        run: mkdir -p styles
+
       - name: Run Vale
         uses: errata-ai/vale-action@v2
         with:

@@ -32,48 +32,40 @@ Most tells are warnings. Intensifier density is a suggestion.
 You need the Vale CLI (version 3.0 or later). See the
 [Vale install guide](https://vale.sh/docs/vale-cli/installation/).
 
-### Option A: vale sync
-
-Add the package to your own `.vale.ini` and let Vale fetch it:
+Add a `.vale.ini` to your repo:
 
 ```ini
 StylesPath = styles
 MinAlertLevel = suggestion
+Packages = https://github.com/JMill/deslop/releases/latest/download/Deslop.zip
 
 [*.{md,mdx}]
-BasedOnStyles = Vale, Deslop
+BasedOnStyles = Deslop
 ```
 
 Then run:
 
 ```sh
+mkdir -p styles
 vale sync
-vale README.md
+vale "**/*.md"
 ```
 
-### Option B: vendor the folder
+`mkdir -p styles` must come before `vale sync`: Vale needs the directory to exist or it
+stages files to a temporary path and leaves your `StylesPath` empty.
 
-Copy `styles/Deslop/` into your repo's `StylesPath` and reference `Deslop` in
-`BasedOnStyles`. This repo ships a working `.vale.ini` you can copy as a starting
-point.
+`vale sync` downloads `Deslop.zip` and extracts it into `styles/Deslop/`. The release
+asset is named `Deslop.zip` (capital D) so the extracted folder matches `BasedOnStyles = Deslop`
+on case-sensitive Linux CI.
 
-### Option C: GitHub Action
-
-The included `.github/workflows/vale.yml` runs
-[`errata-ai/vale-action`](https://github.com/errata-ai/vale-action) on every pull
-request that touches a Markdown file. Drop it into your repo and Vale posts findings
-as PR checks.
+For a full copy-paste guide including CI setup, see [docs/ADOPTING.md](docs/ADOPTING.md).
 
 ## Customize
 
-**Allow a word in one repo.** Add it to a vocabulary accept list. Create
-`styles/config/vocabularies/Deslop/accept.txt` in your repo and list terms one per
-line. Accepted terms stop being flagged.
-
-**Disable a rule.** Set it to `NO` in your `.vale.ini`:
+**Disable a rule.** Set it to `NO` under the file-type section:
 
 ```ini
-[*.md]
+[*.{md,mdx}]
 BasedOnStyles = Deslop
 Deslop.FalseBalance = NO
 ```
