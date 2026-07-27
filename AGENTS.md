@@ -164,6 +164,13 @@ tree, but it cannot make you tag.
 - Every example slop word in docs is backtick-quoted so deslop does not flag its own guide.
 - Every new tell gets a line in `tests/should-flag.md`; every narrowed token gets its
   ordinary usage in `tests/should-pass.md`.
+- A fixture line must be matched by exactly one token of its rule. If a sibling token
+  also matches it, deleting a branch leaves the line still alerting and the loss goes
+  unnoticed — `The evolving landscape of tooling` fired through `landscape of` too, so
+  it became `The evolving landscape changed`.
+- Write inflections as spelled-out alternatives, not character classes. `indicat(?:e[sd]?|ing)`
+  hides `indicate`/`indicates`/`indicated` inside one class; the branch audit expands classes
+  now, but the flat form is what a reader can check.
 - One tell per fixture line. Every prose line in `should-flag.md` must produce an alert
   on its own, and every *token* in every rule must match some line, so a dead token
   cannot hide behind its neighbours. Headings and HTML comments are the only exemptions.

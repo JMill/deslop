@@ -175,8 +175,19 @@ def _parse(pattern, i=0):
             j = i + 1
             while j < len(pattern) and pattern[j] != "]":
                 j += 2 if pattern[j] == "\\" else 1
-            alts[-1].append(("lit", pattern[i : j + 1]))
+            cls = pattern[i : j + 1]
             i = j + 1
+            # A character class used as an inflection (`e[sd]?`) is an alternation
+            # in disguise. Model it as one so its choices get probed; leave
+            # multi-character classes like [-\s] alone.
+            members = [ch for ch in cls[1:-1]]
+            optional = i < len(pattern) and pattern[i] == "?"
+            if optional:
+                i += 1
+            if all(ch.isalnum() for ch in members) and len(members) > 1:
+                alts[-1].append(("group", [[("lit", ch)] for ch in members], optional))
+            else:
+                alts[-1].append(("lit", cls + ("?" if optional else "")))
             continue
         if c == "(":
             i += 1
@@ -194,6 +205,10 @@ def _parse(pattern, i=0):
         if c == "|":
             alts.append([])
             i += 1
+            continue
+        if i + 1 < len(pattern) and pattern[i + 1] == "?" and c.isalnum():
+            alts[-1].append(("group", [[("lit", c)]], True))
+            i += 2
             continue
         alts[-1].append(("lit", c))
         i += 1

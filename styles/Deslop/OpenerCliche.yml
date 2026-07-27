@@ -10,7 +10,7 @@ ignorecase: true
 tokens:
   # `landscape` is deliberately absent: SlopVocab.yml owns that family, and
   # "in today's landscape of tools" reported from both rules at once.
-  - "in\\s+today\\s*['\u2019]?s?\\s+(?:world|market|environment|economy|climate|era|age)"
+  - "in\\s+today\\s*(?:['\u2019]s|s)\\s+(?:world|market|environment|economy|climate|era|age)"
   - 'in\s+an\s+era\s+of'
   - 'in\s+the\s+age\s+of'
   - 'in\s+a\s+world\s+(?:of|where)'

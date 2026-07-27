@@ -6,7 +6,6 @@ message: "Assistant sign-off ('%s'). The answer already ended; cut this."
 level: warning
 ignorecase: true
 tokens:
-  - 'I\s+hope\s+(?:this|that)\s+helps'
   - 'hope\s+(?:this|that)\s+(?:helps|clarifies)'
   - 'let\s+me\s+know\s+if\s+you\s+(?:have|need|would|want)'
   - 'feel\s+free\s+to\s+(?:reach\s+out|ask|let\s+me\s+know)'

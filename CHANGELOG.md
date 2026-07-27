@@ -81,6 +81,10 @@ changes below alone suggest.
 - **`great question` no longer fires mid-sentence.** It flagged ordinary prose such as
   `the design raises an interesting question about caching`; it now requires the
   sentence-initial position that makes it throat-clearing.
+- **`VagueAttribution` verb forms are spelled out flat.** The nested suffix groups let the
+  regex accept combinations that are not English (`critics claims`) while hiding real forms
+  inside character classes. `both perspective merit consideration`, `in today world`, and
+  `unlock insight` were likewise accepted by stray optional markers.
 - **Gerund attribution matches.** `research suggesting`, `data indicating`,
   `experts arguing`, and `critics claiming` slipped past `VagueAttribution`, which only
   covered finite verb forms. `deep dived` likewise slipped past `deep dive`.

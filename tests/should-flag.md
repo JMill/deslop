@@ -42,8 +42,6 @@ It navigates the challenges well.
 
 She navigates the nuances well.
 
-They navigate the intricacies daily.
-
 We navigate the landscape carefully.
 
 He navigates the waters alone.
@@ -168,9 +166,9 @@ The landscape of options shifted.
 
 The competitive landscape changed.
 
-The evolving landscape of tooling.
+The evolving landscape changed.
 
-The shifting landscape of policy.
+The shifting landscape moved.
 
 The changing landscape ahead.
 
@@ -512,6 +510,8 @@ That was a bit of a problem.
 
 In today's world, things change.
 
+In todays world, the apostrophe is missing.
+
 In today's market, we adapt.
 
 In today's environment, costs rise.
@@ -565,6 +565,8 @@ Experts suggest caution.
 An expert suggests caution.
 
 An expert claims the opposite.
+
+An expert believes it works.
 
 Experts suggested caution.
 
@@ -628,6 +630,8 @@ Data indicates a drop.
 
 Data indicated a drop.
 
+Studies indicate a drop.
+
 Data indicating a decline was published.
 
 Many believe this holds.
@@ -635,6 +639,8 @@ Many believe this holds.
 Many believed it once.
 
 Many argue the reverse.
+
+Many argued the reverse.
 
 Many say it works.
 
@@ -647,6 +653,10 @@ Many believing the report sold their shares.
 Many arguing for it cited cost.
 
 Some believe it fails.
+
+Some believed it once.
+
+Some argue against it.
 
 Some argued against it.
 
