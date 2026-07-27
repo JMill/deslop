@@ -58,13 +58,17 @@ changes below alone suggest.
 - **The release workflow can actually publish.** It had no `permissions: contents: write`,
   so the default read-only token would have failed the upload. It had also never run — the
   `v0.1.0` asset was uploaded by hand.
-- **The release is gated on the suite**, which builds the zip, extracts it, and lints
-  through the extracted copy. An incomplete or wrongly nested archive cannot be published.
+- **The release is gated on the suite**, which builds the zip, installs it with
+  `vale sync`, and lints through the installed copy. An incomplete or wrongly nested
+  archive cannot be published.
 
 - **Typographic apostrophes match.** Rules containing contractions (`don't hesitate`,
   `it's worth noting`, `in today's world`, `let's dive in`, `It's not X. It's Y.`) only
   accepted a plain `'`, so prose that had been through an editor slipped past them.
 
+- **`great question` no longer fires mid-sentence.** It flagged ordinary prose such as
+  `the design raises an interesting question about caching`; it now requires the
+  sentence-initial position that makes it throat-clearing.
 - **Gerund attribution matches.** `research suggesting`, `data indicating`,
   `experts arguing`, and `critics claiming` slipped past `VagueAttribution`, which only
   covered finite verb forms. `deep dived` likewise slipped past `deep dive`.

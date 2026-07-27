@@ -225,6 +225,7 @@ if yaml is not None:
 checks_run += 1
 if yaml is not None:
     occurrence_tokens = {}
+    pinned = {}
     for path in sorted(STYLE_DIR.glob("*.yml")):
         spec = yaml.safe_load(path.read_text())
         if spec.get("token"):
@@ -240,6 +241,7 @@ if yaml is not None:
             fail("expected-branches.tsv", f"line {lineno} is not <rule>TAB<branch>: {raw!r}")
             continue
         token = occurrence_tokens.get(rule)
+        pinned.setdefault(rule, set()).add(branch)
         if token is None:
             fail("expected-branches.tsv", f"line {lineno}: {rule} is not an occurrence rule")
         elif branch not in token:
@@ -248,6 +250,19 @@ if yaml is not None:
                 f"{rule} no longer contains {branch!r}. Occurrence rules fire on "
                 f"density, so nothing else in the suite would notice.",
             )
+
+    # The other direction: a branch added to an occurrence token but never pinned
+    # is unprotected, so the pin file has to be exhaustive, not just consistent.
+    for rule, token in occurrence_tokens.items():
+        for _, branch in pinned_variants(token):
+            if not branch or not re.fullmatch(r"[\w\s'-]+", branch):
+                continue  # structural anchor, not a tell
+            if branch not in pinned.get(rule, set()):
+                fail(
+                    "unpinned branch",
+                    f"{rule} has branch {branch!r} with no entry in expected-branches.tsv. "
+                    f"Occurrence branches are only protected by being pinned.",
+                )
 
 # ---------------------------------------------------------------- 8. no double-flagging
 checks_run += 1

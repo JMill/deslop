@@ -116,8 +116,10 @@ The suite fails on any two rules that flag overlapping text, so a collision show
 
 ### Precision
 
-Prefer a narrowed token over a bare word whenever the bare word has an ordinary technical
-meaning. `realm of` not `realm` (Realm is a database), `landscape of` not `landscape`
+Anchor a tell that is only a tell in one position. `great question` is throat-clearing
+when it opens a reply and ordinary prose in `the design raises an interesting question`,
+so the pattern requires sentence-initial position. Prefer a narrowed token over a bare
+word whenever the bare word has an ordinary technical meaning. `realm of` not `realm` (Realm is a database), `landscape of` not `landscape`
 (landscape orientation), `harness the power` not `harness the` (test harness),
 `unlock <noun>` not `unlock` (unlock a mutex). Add the ordinary usage to
 `tests/should-pass.md` so it stays safe.
@@ -171,7 +173,8 @@ tree, but it cannot make you tag.
 - Editing an `occurrence` rule means editing `tests/expected-branches.tsv` too. Those
   rules fire on density across the whole file, so one fixture line covers every branch at
   once and removing a single one changes nothing the suite can see. The pinned list is
-  the only thing that notices.
+  the only thing that notices, and the suite checks it in both directions: a pinned
+  branch must still exist in the rule, and every branch in the rule must be pinned.
 
 ## Where this sits
 

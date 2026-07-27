@@ -606,6 +606,12 @@ Many say it works.
 
 Many said it worked.
 
+Many saying it works have not tested it.
+
+Many believing the report sold their shares.
+
+Many arguing for it cited cost.
+
 Some believe it fails.
 
 Some argued against it.
@@ -615,6 +621,12 @@ Some say it works.
 Some said it worked.
 
 Some would say otherwise.
+
+Some saying it works have not tested it.
+
+Some believing the report sold their shares.
+
+Some arguing for the proposal cited cost.
 
 It is widely believed here.
 
@@ -824,13 +836,15 @@ All at your fingertips.
 
 Great question!
 
-An excellent question indeed.
+That's a great question, thanks.
 
-A good question to raise.
+Excellent question, thanks for asking.
 
-An interesting question arises.
+Good question! Here is the answer.
 
-A fantastic question overall.
+Interesting question, let me answer it.
+
+Fantastic question, glad you asked.
 
 I'd be happy to help.
 

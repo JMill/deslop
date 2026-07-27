@@ -36,6 +36,14 @@ Boast is a column name inherited from the 2019 schema.
 
 Chen and Nakamura (2024, MIT) report a 40% drop in retention.
 
+## Question acknowledgements that are ordinary prose
+
+The design raises an interesting question about caching.
+
+We used a good question from the survey.
+
+That leaves one excellent question unanswered.
+
 ## Sentence shapes that are fine
 
 The parser handles three cases — nested lists being the awkward one.
