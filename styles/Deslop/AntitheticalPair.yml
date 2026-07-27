@@ -3,4 +3,4 @@ message: "Antithetical pair ('It's not X. It's Y.'). Fold into one affirmative s
 level: warning
 ignorecase: true
 raw:
-  - "(?:It|This|That|We|They)\\s*'?s?\\s+not\\s+[^.!?]{3,50}[.!]\\s+(?:It|This|That|We|They)(?:'s|\\s+is|\\s+are)\\b"
+  - "(?:It|This|That|We|They)\\s*['\u2019]?s?\\s+not\\s+[^.!?]{3,50}[.!]\\s+(?:It|This|That|We|They)(?:['\u2019]s|\\s+is|\\s+are)\\b"

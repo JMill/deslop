@@ -13,6 +13,13 @@ Packages = https://github.com/JMill/deslop/releases/latest/download/Deslop.zip
 BasedOnStyles = Deslop
 ```
 
+`latest` tracks whatever was released most recently, so a new rule can start failing
+your build without anything changing on your side. Pin a tag to control that:
+
+```ini
+Packages = https://github.com/JMill/deslop/releases/download/v0.2.0/Deslop.zip
+```
+
 ## 2. Run locally
 
 ```sh
@@ -39,6 +46,11 @@ on:
 jobs:
   vale:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      checks: write
+      pull-requests: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -50,6 +62,8 @@ jobs:
         with:
           files: '**/*.md'
           reporter: github-pr-check
+          fail_on_error: true
+          filter_mode: nofilter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -57,6 +71,20 @@ jobs:
 This uses `errata-ai/vale-action@v2`, the current stable major (v2.1.2 as of May 2026).
 The action reads your `.vale.ini`, runs `vale sync` to fetch the package, and
 posts findings as PR check annotations.
+
+**Two defaults will surprise you.** `fail_on_error` defaults to `false`, so findings
+annotate the PR but never block a merge. `filter_mode` defaults to `added`, so only
+lines your diff added are examined — existing slop in a file you touched is ignored.
+The snippet above overrides both. Drop the overrides if you want the check to stay
+advisory while you clean up a backlog, and add `MinAlertLevel = error` plus a few
+promoted rules if you want a narrow blocking set instead of an all-or-nothing one.
+
+For a supply-chain-conscious setup, pin the action to a commit SHA rather than a
+floating major tag:
+
+```yaml
+      - uses: errata-ai/vale-action@85f9f7f2c5f449ac0ae5b66662961bae3f77ca6a # v2.1.2
+```
 
 ## 4. Customize
 
@@ -82,7 +110,31 @@ Deslop.HollowIntensifier = error
 MinAlertLevel = error
 ```
 
-## 5. Add a project-specific banned phrase
+## 5. Exempt a word you actually use
+
+deslop narrows its tokens to avoid ordinary technical usage. It matches `realm of`
+rather than bare `realm`, so Realm the database stays safe. What it cannot know is
+your product names. When a rule fires on a term you legitimately use, exempt the term
+rather than disabling the rule:
+
+```sh
+mkdir -p styles/config/vocabularies/Base
+printf 'Kubernetes\nSynergy Inc\n' > styles/config/vocabularies/Base/accept.txt
+```
+
+```ini
+StylesPath = styles
+Vocab = Base
+```
+
+Accepted terms are filtered out of every rule's matches. Entries are case-sensitive,
+which is usually what you want: accepting `Swift` exempts the language without
+exempting `swift response` in prose.
+
+Keep `styles/config/` in version control. It sits alongside the synced `styles/Deslop/`
+and `vale sync` does not touch it.
+
+## 6. Add a project-specific banned phrase
 
 Create `styles/Repo/MyRule.yml` (Vale `existence` rule):
 
@@ -105,7 +157,7 @@ BasedOnStyles = Deslop, Repo
 Vale loads both style directories. `Repo` rules sit alongside Deslop rules with
 no conflicts unless you reuse the same rule name.
 
-## 6. Running alongside an existing linter
+## 7. Running alongside an existing linter
 
 If your repo already runs a prose or slop linter (for example a TypeScript
 script that checks for banned terms), you can run both in CI without conflict.
@@ -127,7 +179,7 @@ Example parallel CI step (add after your existing linter step):
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-## 7. Private voice and brand styles (single source of truth)
+## 8. Private voice and brand styles (single source of truth)
 
 deslop is the shared public floor: the generic anti-slop rules. Keep voice-specific
 and brand-specific rules out of it and put them in your own private style, then compose:

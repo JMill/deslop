@@ -1,0 +1,92 @@
+# <rule>	<phrase that must be flagged, matched case-insensitively as a substring of Vale's Match>
+#
+# These are the cases worth pinning individually: inflected forms (which Vale's
+# automatic \b...\b wrapping silently drops unless spelled out) and the narrowed
+# tokens that guard against known false positives. Broad coverage is enforced
+# separately by the "no dead rules" check in check.py.
+
+# --- inflections: SlopVocab ---
+Deslop.SlopVocab	delves
+Deslop.SlopVocab	delved
+Deslop.SlopVocab	delving
+Deslop.SlopVocab	leveraging
+Deslop.SlopVocab	leverages
+Deslop.SlopVocab	leveraged
+Deslop.SlopVocab	seamlessly
+Deslop.SlopVocab	meticulously
+Deslop.SlopVocab	boasted
+Deslop.SlopVocab	intricacies
+Deslop.SlopVocab	fostering
+Deslop.SlopVocab	unlocking
+Deslop.SlopVocab	harnessing
+Deslop.SlopVocab	embarked
+
+# --- inflections: Substitutions ---
+Deslop.Substitutions	robustness
+Deslop.Substitutions	comprehends
+Deslop.Substitutions	comprehended
+Deslop.Substitutions	comprehending
+Deslop.Substitutions	bolsters
+Deslop.Substitutions	bolstered
+Deslop.Substitutions	bolstering
+Deslop.Substitutions	pinpoints
+Deslop.Substitutions	pinpointed
+Deslop.Substitutions	pinpointing
+Deslop.Substitutions	utilizes
+Deslop.Substitutions	utilized
+Deslop.Substitutions	utilizing
+Deslop.Substitutions	utilization
+
+# --- narrowed tokens still fire in their slop sense ---
+Deslop.SlopVocab	realm of
+Deslop.SlopVocab	landscape of
+Deslop.SlopVocab	competitive landscape
+Deslop.SlopVocab	beacon of
+Deslop.SlopVocab	swift response
+Deslop.SlopVocab	navigate the complexities
+Deslop.SlopVocab	underscore the
+Deslop.SlopVocab	myriad of
+Deslop.SlopVocab	a testament to
+
+# --- opener family lives only in OpenerCliche now ---
+Deslop.OpenerCliche	in today's world
+Deslop.OpenerCliche	in today's market
+Deslop.OpenerCliche	in an era of
+
+# --- new coverage ---
+Deslop.AssistantOpener	Great question
+Deslop.AssistantOpener	happy to help
+Deslop.AssistantOpener	dive in
+Deslop.AssistantCloser	hope this helps
+Deslop.AssistantCloser	Let me know if you have
+Deslop.MarketingVerb	Revolutionize
+Deslop.MarketingVerb	streamlines your
+Deslop.MarketingVerb	unparalleled
+Deslop.MarketingVerb	effortlessly
+Deslop.CorporateCliche	mission-critical
+Deslop.CorporateMetaphor	touch base
+Deslop.HedgeCascade	might potentially
+Deslop.Hedging	in my opinion
+Deslop.VagueAttribution	data shows
+Deslop.FalseBalance	only time will tell
+Deslop.FalseWarmth	bodes well
+Deslop.FillerTransition	first and foremost
+Deslop.HollowCloser	in closing
+
+# --- inflections added after review (each was silently unmatched) ---
+Deslop.SlopVocab	Navigating the complexities
+Deslop.CorporateMetaphor	moved the goalposts
+Deslop.CorporateMetaphor	circled back
+Deslop.CorporateMetaphor	touched base
+Deslop.CorporateMetaphor	boiling the ocean
+Deslop.CorporateMetaphor	ran it up the flagpole
+Deslop.CorporateMetaphor	taken it offline
+Deslop.CorporateMetaphor	drunk from the firehose
+Deslop.CorporateCliche	moved the needle
+Deslop.CorporateCliche	driven growth
+Deslop.MarketingVerb	taken it to the next level
+Deslop.FalseBalance	remain to be seen
+Deslop.FalseWarmth	boded well
+Deslop.VagueAttribution	experts argued
+Deslop.VagueAttribution	sources said
+Deslop.SlopVocab	it's worth noting
