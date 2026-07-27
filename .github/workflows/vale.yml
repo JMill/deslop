@@ -5,6 +5,14 @@ on:
     paths:
       - '**/*.md'
 
+# github-pr-check needs to write a check run; reviewdog reads the PR to place
+# annotations. Declared explicitly so the workflow does not depend on the
+# repository's default token permissions.
+permissions:
+  contents: read
+  checks: write
+  pull-requests: write
+
 jobs:
   vale:
     name: deslop lint
@@ -20,5 +28,11 @@ jobs:
         with:
           files: '**/*.md'
           reporter: github-pr-check
+          # Both of these default to values that make the check advisory only:
+          # fail_on_error defaults to false (findings never block a merge) and
+          # filter_mode defaults to `added` (only newly added lines are read).
+          # This repo is clean, so it holds itself to the strict setting.
+          fail_on_error: true
+          filter_mode: nofilter
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

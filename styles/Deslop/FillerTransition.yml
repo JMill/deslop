@@ -1,8 +1,17 @@
+# `it is (also) worth noting` is NOT here: SlopVocab.yml owns the whole
+# "worth noting" family so it cannot report twice.
 extends: existence
 message: "Filler transition ('%s'). State the point directly."
 level: warning
 ignorecase: true
 tokens:
   - 'Having\s+(?:examined|explored|discussed|reviewed|considered|analyzed)'
-  - 'it\s+is\s+also\s+worth\s+noting'
-  - 'another\s+(?:important|key|crucial)\s+(?:consideration|factor|point)'
+  # `crucial` is deliberately absent from this alternation: Substitutions.yml
+  # owns that word, and "another crucial consideration" reported twice.
+  - 'another\s+(?:important|key|major)\s+(?:consideration|factor|point)'
+  - 'with\s+that\s+(?:said|in\s+mind)'
+  - 'that\s+being\s+said'
+  - 'first\s+and\s+foremost'
+  - 'last\s+but\s+not\s+least'
+  - 'it\s+goes\s+without\s+saying'
+  - 'as\s+(?:we\s+)?(?:previously\s+)?(?:mentioned|discussed|noted)\s+(?:above|earlier)'

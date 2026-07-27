@@ -1,14 +1,18 @@
+# `unlock value` used to live here as well as in SlopVocab.yml's unlock family,
+# so it reported twice. SlopVocab owns every `unlock <noun>` form now.
 extends: existence
 message: "'%s' is corporate filler. Name the concrete thing instead."
 level: warning
 ignorecase: true
 tokens:
-  - 'synerg(?:y|ies)'
+  - 'synerg(?:y|ies|istic)'
   - 'best[-\s]in[-\s]class'
   - 'world[-\s]class'
   - 'cutting[-\s]edge'
+  - 'bleeding[-\s]edge'
   - 'move\s+the\s+needle'
-  - 'unlock\s+value'
   - 'drive\s+growth'
-  - 'holistic'
+  - 'holistic(?:ally)?'
   - 'transform(?:ational|ative)'
+  - 'mission[-\s]critical'
+  - 'value[-\s]add(?:ed)?'

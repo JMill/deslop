@@ -3,10 +3,14 @@ message: "Hedging. State the claim or cut it."
 level: warning
 ignorecase: true
 tokens:
-  - '\bhonestly\b'
-  - '\bI\s+think\b'
-  - '\barguably\b'
+  - 'honestly'
+  - 'I\s+think'
+  - 'I\s+believe'
+  - 'I\s+would\s+argue'
+  - 'in\s+my\s+opinion'
+  - 'arguably'
   - 'it\s+could\s+be\s+argued'
-  - '\bperhaps\b'
-  - '\bsomewhat\b'
+  - 'it\s+seems\s+(?:that|like)'
+  - 'perhaps'
+  - 'somewhat'
   - 'to\s+some\s+extent'

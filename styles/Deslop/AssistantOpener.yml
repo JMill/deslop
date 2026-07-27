@@ -1,0 +1,16 @@
+# Chatbot throat-clearing: the sycophantic acknowledgement and the "let's begin"
+# announcement that precede the actual answer. Both are pure filler in prose.
+#
+# Two Vale gotchas force the shape of this rule:
+#   1. `tokens` entries are wrapped in \b...\b, which silently stops any pattern
+#      ending in punctuation (`certainly!`) from ever matching. Hence `raw`.
+#   2. Multiple `raw` entries are CONCATENATED into one regex, not alternated —
+#      a list here would compile to an unmatchable pattern and the rule would
+#      look alive while flagging nothing. So this is one entry with top-level
+#      alternation, and the \b markers are written out by hand.
+extends: existence
+message: "Assistant throat-clearing. Delete it and start on the answer."
+level: warning
+ignorecase: true
+raw:
+  - '(?:\b(?:great|excellent|good|interesting|fantastic)\s+question\b|\b(?:I[''’]d|I\s+would|I[''’]m|I\s+am)\s+(?:be\s+)?happy\s+to\s+(?:help|assist)\b|\blet[''’]?s\s+(?:dive\s+(?:in|into|right\s+in)|get\s+started|explore|take\s+a\s+(?:closer\s+)?look)\b|\bbuckle\s+up\b|\bhere[''’]?s\s+the\s+thing\b|\byou[''’]?re\s+absolutely\s+right\b|(?:^|[.!?]\s+)(?:certainly|absolutely|sure)[!,])'

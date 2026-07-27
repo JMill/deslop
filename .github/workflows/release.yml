@@ -5,6 +5,14 @@ on:
     tags:
       - 'v*'
 
+# Required to create the release and upload Deslop.zip. Without this the default
+# GITHUB_TOKEN is read-only and the publish step fails.
+permissions:
+  contents: write
+
+env:
+  VALE_VERSION: '3.9.1'
+
 jobs:
   release:
     name: Build and publish release
@@ -12,12 +20,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install Vale
+        run: |
+          curl -sSfL \
+            "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" \
+            -o vale.tar.gz
+          tar xzf vale.tar.gz vale
+          sudo mv vale /usr/local/bin/vale
+
+      # Gate the release on the rule suite. Among other things this builds the
+      # zip, extracts it, and lints through the extracted copy — so a broken or
+      # incomplete archive cannot be published.
+      - name: Run rule suite
+        run: tests/run.sh
+
       - name: Build Deslop.zip
         run: cd styles && zip -r ../Deslop.zip Deslop
 
+      - name: Show archive contents
+        run: unzip -l Deslop.zip
+
       - name: Publish GitHub release
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@3d0d9888cb7fd7b750713d6e236d1fcb99157228 # v3.0.2
         with:
           files: Deslop.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          generate_release_notes: true

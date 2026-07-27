@@ -1,0 +1,33 @@
+name: Tests
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  # Pinned so a Vale release cannot change rule behaviour under us. Bump
+  # deliberately, with the test suite as the check that it is safe.
+  VALE_VERSION: '3.9.1'
+
+jobs:
+  rules:
+    name: rule suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Vale
+        run: |
+          curl -sSfL \
+            "https://github.com/errata-ai/vale/releases/download/v${VALE_VERSION}/vale_${VALE_VERSION}_Linux_64-bit.tar.gz" \
+            -o vale.tar.gz
+          tar xzf vale.tar.gz vale
+          sudo mv vale /usr/local/bin/vale
+          vale --version
+
+      - name: Run rule suite
+        run: tests/run.sh

@@ -1,61 +1,56 @@
+# Stock words and phrases with no single-word replacement. Words that DO have a
+# clean one-word swap live in Substitutions.yml instead — never in both, or every
+# hit reports twice.
+#
+# Vale wraps each token in \b...\b, so inflections must be spelled out: `delve`
+# alone does not match `delved`. Several tokens carry deliberate context
+# (`realm of`, not bare `realm`) so the rule does not fire on Realm the database,
+# landscape orientation, a test harness, and similar ordinary technical usage.
 extends: existence
 message: "'%s' is an AI-slop tell. Cut it or say the thing plainly."
 level: warning
 ignorecase: true
 tokens:
-  - 'delv(?:e|ing)'
+  - 'delv(?:e|es|ed|ing)'
   - '(?:rich\s+)?tapestry'
-  - 'a\s+testament\s+to'
-  - 'stands\s+as\s+a\s+testament'
-  - 'multifaceted'
-  - 'navigate\s+the\s+complexities'
+  - '(?:stands\s+as\s+)?a\s+testament\s+to'
+  - 'navigate(?:s|d)?\s+the\s+(?:complexities|complexity|challenges|nuances|intricacies|landscape|waters|maze)'
   - 'treasure\s+trove'
   - 'plethora'
-  - 'a\s+myriad\s+of'
-  - 'myriad'
-  - 'boast(?:s|ing)'
+  - '(?:a\s+)?myriad\s+of'
+  - 'boast(?:s|ed|ing)?\s+(?:a|an|the|about|over)'
   - 'nestled'
-  - 'ever[-\s](?:evolving|changing)'
+  - 'ever[-\s](?:evolving|changing|expanding)'
   - 'fast[-\s]paced\s+world'
-  - "in\\s+today\\s*'?s?\\s+world"
-  - 'in\s+an\s+era\s+of'
-  - 'in\s+the\s+age\s+of'
   - 'at\s+the\s+forefront'
-  - "it\\s*'?s?\\s+worth\\s+noting"
-  - "it\\s*'?s?\\s+important\\s+to\\s+note"
+  - "it\\s*'s\\s+(?:also\\s+)?worth\\s+noting"
+  - 'it\s+is\s+(?:also\s+)?worth\s+noting'
+  - "it\\s*'s\\s+important\\s+to\\s+note"
+  - 'it\s+is\s+important\s+to\s+note'
   - 'when\s+it\s+comes\s+to'
   - 'needless\s+to\s+say'
-  - 'unlock\s+(?:the\s+)?power'
-  - 'unlock\s+(?:the\s+)?potential'
-  - 'harness\s+(?:the\s+)?power'
+  - 'unlock(?:s|ed|ing)?\s+(?:the\s+|its\s+|your\s+|their\s+|our\s+)?(?:power|potential|value|insights?|growth)'
+  - 'harness(?:es|ed|ing)?\s+(?:the\s+|its\s+|your\s+|their\s+|our\s+)?(?:power|potential)'
   - 'game[-\s]changer'
   - 'indelible\s+mark'
   - 'vibrant'
   - 'bustling'
-  - '\bcomprehend\b'
-  - '\bswift\b'
-  - '\bmeticulous\b'
-  - '\bbolster\b'
-  - '\bunderscore\b'
-  - '\binquiry\b'
-  - '\bpinpoint\b'
-  - '\brealm\b'
-  - '\brobust\b'
-  - '\bcrucial\b'
-  - '\bpivotal\b'
-  - '\bnuanced\b'
-  - '\bintricate\b'
-  - '\bseamless\b'
-  - '\bfoster\b'
-  - '\blandscape\b'
+  - 'meticulous(?:ly)?'
+  - 'underscor(?:e|es|ed|ing)\s+(?:the|a|an|how|why|that|just)'
+  - 'realm\s+of'
+  - 'landscape\s+of'
+  - '(?:competitive|evolving|shifting|changing|current|digital|business|technological|regulatory|media)\s+landscape'
+  - "today\\s*'s\\s+landscape"
+  - 'foster(?:s|ed|ing)?\s+(?:a\s+|an\s+|the\s+)?(?:culture|collaboration|innovation|growth|community|environment|sense|understanding|engagement|creativity|trust|dialogue|inclusion|connection)'
+  - 'swift(?:ly)?\s+(?:response|action|resolution|progress|adoption|rise|decline)'
+  - 'beacon\s+of'
+  - 'pivotal'
+  - 'nuanced'
+  - '(?:intricate|intricacies)'
+  - 'seamless(?:ly)?'
   - 'paradigm\s+shift'
-  - 'deep\s+dive'
-  - '\bunlock\b'
-  - '\belevate\b'
-  - '\bembark\b'
-  - '\bcornerstone\b'
-  - '\bbeacon\b'
+  - 'deep\s+div(?:e|es|ing)'
+  - 'embark(?:s|ed|ing)?\s+on'
+  - 'cornerstone'
   - 'stark\s+reminder'
-  - 'navigate\s+(?:the|this)\b'
-  - '\bleverage\b'
-  - 'harness\s+(?:the|our|its|their)\b'
+  - 'leverag(?:e|es|ed|ing)'

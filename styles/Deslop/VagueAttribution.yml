@@ -1,8 +1,17 @@
+# Known limitation: this fires even when a citation follows ("research shows X
+# (Chen 2024)"). That is intentional — the construction is weak regardless; the
+# repair is "Chen (2024) found X". Consumers who disagree can set
+# `Deslop.VagueAttribution = NO`.
 extends: existence
 message: "Vague attribution ('%s'). Name the source and affiliation."
 level: warning
 ignorecase: true
 tokens:
   - 'experts?\s+(?:say|argue|suggest|believe|claim)s?'
-  - '(?:research|studies)\s+shows?'
+  - 'critics\s+(?:say|argue|claim)'
+  - 'sources\s+say'
+  - '(?:research|studies|data)\s+(?:shows?|suggests?|indicates?)'
+  - 'many\s+(?:believe|argue|say)'
+  - 'some\s+(?:believe|argue|say|would\s+say)'
   - 'it\s+is\s+widely\s+believed'
+  - 'it\s+is\s+often\s+said'
