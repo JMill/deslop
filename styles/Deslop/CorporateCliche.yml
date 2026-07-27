@@ -11,7 +11,7 @@ tokens:
   - 'cutting[-\s]edge'
   - 'bleeding[-\s]edge'
   - 'mov(?:e|es|ed|ing)\s+the\s+needle'
-  - '(?:driv(?:e|es|ing)|drove)\s+growth'
+  - '(?:driv(?:e|es|ing|en)|drove)\s+growth'
   - 'holistic(?:ally)?'
   - 'transform(?:ational|ative)'
   - 'mission[-\s]critical'

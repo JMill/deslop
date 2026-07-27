@@ -17,6 +17,6 @@ tokens:
   - 'unparalleled'
   - 'unrivall?ed'
   - 'elevat(?:e|es|ed|ing)\s+(?:your|the|our)\s+(?:brand|game|experience|content|business|workflow|team)'
-  - '(?:tak(?:e|es|ing)|took)\s+(?:it|things|your\s+\w+)\s+to\s+the\s+next\s+level'
+  - '(?:tak(?:e|es|en|ing)|took)\s+(?:it|things|your\s+\w+)\s+to\s+the\s+next\s+level'
   - 'effortlessly'
   - 'at\s+your\s+fingertips'

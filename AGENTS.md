@@ -76,6 +76,10 @@ any of them; the suite is the only thing that will tell you.
   It applies to verb-headed idioms too, where the base form is the *least* common one in
   practice: `move the goalposts` misses `moved the goalposts`, and `circle back` misses
   `circled back`. Write `mov(?:e|es|ed|ing)\s+the\s+goalposts`.
+- **Cover the whole paradigm, including irregulars and the gerund.** `navigate(?:s|d)?`
+  silently drops `navigating`, because the gerund changes the spelling of the stem.
+  `(?:driv(?:e|es|ing)|drove)` drops `driven`. And an alternation like `remain(?:s|ed)`
+  drops the *base* form, since the suffix group is mandatory without a trailing `?`.
 - **A `tokens` entry ending in punctuation never matches.** The trailing `\b` cannot be
   satisfied after `!` or `,`. Use `raw` for those.
 - **Multiple `raw` entries are concatenated, not alternated.** A list of five `raw`
@@ -154,9 +158,12 @@ tree, but it cannot make you tag.
 - Every example slop word in docs is backtick-quoted so deslop does not flag its own guide.
 - Every new tell gets a line in `tests/should-flag.md`; every narrowed token gets its
   ordinary usage in `tests/should-pass.md`.
-- One phrase per fixture line. Every prose line in `should-flag.md` must produce an alert
-  on its own, so a phrase that matches nothing cannot hide behind another tell on the
-  same line. Headings and HTML comments are the only exemptions.
+- One tell per fixture line. Every prose line in `should-flag.md` must produce an alert
+  on its own, and every *token* in every rule must match some line, so a dead token
+  cannot hide behind its neighbours. Headings and HTML comments are the only exemptions.
+- Give each inflected form its own fixture line. For verb-headed idioms the base form is
+  the least common one in running prose, so `moved the goalposts` earns a line more than
+  `move the goalposts` does.
 
 ## Where this sits
 

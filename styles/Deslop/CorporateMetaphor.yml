@@ -14,6 +14,6 @@ tokens:
   - 'double[-\s]click(?:s|ing|ed)?\s+(?:on|into)'
   - 'mov(?:e|es|ed|ing)\s+the\s+goalposts'
   - 'r(?:un|uns|an|unning)\s+(?:it|this)\s+up\s+the\s+flagpole'
-  - 't(?:ake|akes|ook|aking)\s+(?:it|this)\s+offline'
+  - 't(?:ake|akes|ook|aken|aking)\s+(?:it|this)\s+offline'
   - 'peel(?:s|ed|ing)?\s+(?:back\s+)?the\s+onion'
-  - '(?:drink(?:s|ing)?|drank)\s+from\s+the\s+fire\s?hose'
+  - '(?:drink(?:s|ing)?|drank|drunk)\s+from\s+the\s+fire\s?hose'

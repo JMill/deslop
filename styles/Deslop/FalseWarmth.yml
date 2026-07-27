@@ -9,4 +9,4 @@ tokens:
   - 'groundbreaking'
   - 'rapidly[-\s]evolv\w*'
   - 'bright\s+future'
-  - 'bodes?\s+well'
+  - 'bod(?:e|es|ed|ing)\s+well'

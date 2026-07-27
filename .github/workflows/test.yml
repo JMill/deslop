@@ -20,6 +20,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install PyYAML
+        run: python3 -m pip install --quiet pyyaml
+
       - name: Install Vale
         run: |
           curl -sSfL \

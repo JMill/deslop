@@ -26,12 +26,17 @@ cd "$REPO_ROOT"
 
 # Vale exits non-zero whenever it reports an alert, which is the normal case for
 # should-flag.md. Capture the JSON and let the checks below decide pass/fail.
-json="$("$VALE" --config tests/.vale.ini --output=JSON \
-  tests/should-flag.md tests/should-pass.md 2>/dev/null || true)"
+# It goes to a file rather than an environment variable: the fixture produces
+# enough alerts to blow past the exec argument limit.
+report="$(mktemp)"
+trap 'rm -f "$report"' EXIT
 
-if [ -z "$json" ]; then
+"$VALE" --config tests/.vale.ini --output=JSON \
+  tests/should-flag.md tests/should-pass.md >"$report" 2>/dev/null || true
+
+if [ ! -s "$report" ]; then
   echo "error: vale produced no output" >&2
   exit 1
 fi
 
-VALE_JSON="$json" VALE_BIN="$(command -v "$VALE")" python3 "$REPO_ROOT/tests/check.py"
+VALE_REPORT="$report" VALE_BIN="$(command -v "$VALE")" python3 "$REPO_ROOT/tests/check.py"

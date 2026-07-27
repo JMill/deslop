@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Assertions for the deslop rule suite. Driven by tests/run.sh, which supplies
-Vale's JSON output in the VALE_JSON environment variable."""
+"""Assertions for the deslop rule suite. Driven by tests/run.sh, which writes
+Vale's JSON output to the path in VALE_REPORT."""
 
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -30,7 +31,7 @@ def alerts_for(data, name):
     return []
 
 
-data = json.loads(os.environ["VALE_JSON"])
+data = json.loads(Path(os.environ["VALE_REPORT"]).read_text())
 flag_alerts = alerts_for(data, "should-flag.md")
 pass_alerts = alerts_for(data, "should-pass.md")
 
@@ -96,7 +97,59 @@ for lineno, raw in enumerate(expected_path.read_text().splitlines(), 1):
     if not hit:
         fail("missed", f"{rule} did not flag {phrase!r} (expected.tsv line {lineno})")
 
-# ---------------------------------------------------------------- 5. no double-flagging
+# ---------------------------------------------------------------- 5. every token is exercised
+# Line-level coverage is not enough: several tells can share one fixture line, so
+# a token that stops matching stays hidden behind its neighbours. This walks every
+# token in every rule and requires each one to match some fixture line on its own.
+# Vale wraps `tokens` and `swap` keys in \b...\b and concatenates `raw` entries;
+# both are reproduced here so the patterns are tested as Vale compiles them.
+checks_run += 1
+try:
+    import yaml
+except ImportError:
+    fail("token coverage", "PyYAML is not installed; cannot audit token coverage")
+    yaml = None
+
+if yaml is not None:
+    in_comment = False
+    prose = []
+    for raw in (TESTS / "should-flag.md").read_text().splitlines():
+        line = raw.strip()
+        if in_comment:
+            if "-->" in line:
+                in_comment = False
+            continue
+        if line.startswith("<!--"):
+            in_comment = "-->" not in line
+            continue
+        if line and not line.startswith("#"):
+            prose.append(line)
+    fixture_text = "\n".join(prose)
+
+    for path in sorted(STYLE_DIR.glob("*.yml")):
+        spec = yaml.safe_load(path.read_text())
+        if spec.get("extends") == "occurrence":
+            continue  # single token; the dead-rule check already covers it
+        flags = re.IGNORECASE if spec.get("ignorecase") else 0
+        patterns = [(t, True) for t in spec.get("tokens", [])]
+        patterns += [(k, True) for k in spec.get("swap", {})]
+        if spec.get("raw"):
+            patterns.append(("".join(spec["raw"]), False))
+        for pattern, wrapped in patterns:
+            compiled = rf"\b(?:{pattern})\b" if wrapped else pattern
+            try:
+                found = re.search(compiled, fixture_text, flags)
+            except re.error as exc:
+                fail("bad pattern", f"Deslop.{path.stem}: {pattern!r} does not compile ({exc})")
+                continue
+            if not found:
+                fail(
+                    "uncovered token",
+                    f"Deslop.{path.stem}: {pattern!r} matches nothing in should-flag.md. "
+                    f"Add a fixture line for it, on its own line.",
+                )
+
+# ---------------------------------------------------------------- 6. no double-flagging
 checks_run += 1
 by_line = {}
 for a in flag_alerts:
@@ -116,7 +169,7 @@ for line, alerts in sorted(by_line.items()):
                     f"Each tell needs exactly one home.",
                 )
 
-# ---------------------------------------------------------------- 6. package completeness
+# ---------------------------------------------------------------- 7. package completeness
 # The published v0.1.0 zip shipped 13 of 17 rules for two months because nothing
 # compared the archive against the tree. This check does, then goes further and
 # lints through the extracted copy — which is what catches a wrong directory

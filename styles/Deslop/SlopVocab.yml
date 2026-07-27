@@ -14,7 +14,7 @@ tokens:
   - 'delv(?:e|es|ed|ing)'
   - '(?:rich\s+)?tapestry'
   - '(?:stands\s+as\s+)?a\s+testament\s+to'
-  - 'navigate(?:s|d)?\s+the\s+(?:complexities|complexity|challenges|nuances|intricacies|landscape|waters|maze)'
+  - 'navigat(?:e|es|ed|ing)\s+the\s+(?:complexities|complexity|challenges|nuances|intricacies|landscape|waters|maze)'
   - 'treasure\s+trove'
   - 'plethora'
   - '(?:a\s+)?myriad\s+of'

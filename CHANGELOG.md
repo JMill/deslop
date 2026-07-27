@@ -35,7 +35,9 @@ changes below alone suggest.
 - **Inflected forms are caught.** Vale wraps every token in `\b...\b`, so `leverage` never
   matched `leveraging`, `seamless` never matched `seamlessly`, and `delve` never matched
   `delved`. All token families now spell their inflections out.
-- **Verb-headed idioms match their inflections.** `move the goalposts`, `move the needle`,
+- **Verb-headed idioms match their inflections**, including gerunds and irregular
+  participles: `navigating the complexities`, `has driven growth`, `have taken it
+  offline`, `have drunk from the firehose`, `boded well`. `move the goalposts`, `move the needle`,
   `drive growth`, `circle back`, `touch base`, `boil the ocean`, `run it up the flagpole`,
   `take it offline`, `peel back the onion`, `take it to the next level`, and
   `remains to be seen` only ever matched their base form, which is the least common one in
