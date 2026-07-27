@@ -4,7 +4,7 @@ Consumers pointed at `releases/latest/download/Deslop.zip` pick up each release 
 next `vale sync`. Pin a tag instead if you want to choose when that happens — see
 [README](README.md#pin-a-version).
 
-## Unreleased
+## v0.2.0 — 2026-07-27
 
 The first release since `v0.1.0`. `v0.1.0` shipped 13 of the 17 rule files that existed in
 the repository, so `CorporateMetaphor`, `Hedging`, `OpenerCliche`, and `Substitutions` have
