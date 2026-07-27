@@ -320,7 +320,51 @@ if yaml is not None:
                         f"matches no fixture line. Give it one.",
                     )
 
-# ---------------------------------------------------------------- 7. occurrence tokens keep their branches
+# ---------------------------------------------------------------- 7. each fixture line is attributable to one token
+# A fixture line only detects deletion if exactly one token of its rule explains
+# it. When a sibling token also matches, removing a branch leaves the line still
+# alerting while the branch disappears from the audit along with the tell --
+# `The evolving landscape of tooling` fired through `landscape of` too. This is
+# the invariant AGENTS.md states; without it the invariant is aspirational.
+checks_run += 1
+if yaml is not None:
+    fixture_lines = []
+    in_comment = False
+    for lineno, raw in enumerate((TESTS / "should-flag.md").read_text().splitlines(), 1):
+        line = raw.strip()
+        if in_comment:
+            if "-->" in line:
+                in_comment = False
+            continue
+        if line.startswith("<!--"):
+            in_comment = "-->" not in line
+            continue
+        if line and not line.startswith("#"):
+            fixture_lines.append((lineno, line))
+
+    for path in sorted(STYLE_DIR.glob("*.yml")):
+        spec = yaml.safe_load(path.read_text())
+        tokens = list(spec.get("tokens", [])) + list(spec.get("swap", {}))
+        if len(tokens) < 2:
+            continue
+        flags = (re.IGNORECASE if spec.get("ignorecase") else 0) | re.MULTILINE
+        for lineno, line in fixture_lines:
+            matched = []
+            for tok in tokens:
+                try:
+                    if re.search(rf"\b(?:{tok})\b", line, flags):
+                        matched.append(tok)
+                except re.error:
+                    pass
+            if len(matched) > 1:
+                fail(
+                    "ambiguous fixture",
+                    f"should-flag.md:{lineno} is matched by {len(matched)} "
+                    f"Deslop.{path.stem} tokens ({matched[0]!r} and {matched[1]!r}). "
+                    f"Deleting either would leave the line alerting. Split it.",
+                )
+
+# ---------------------------------------------------------------- 8. occurrence tokens keep their branches
 # Branch coverage above proves a branch is exercised; it cannot notice a branch
 # being deleted, because a smaller alternation simply has less to check. For
 # `tokens` rules deletion is caught anyway -- each tell has its own fixture line,
@@ -389,7 +433,7 @@ for line, alerts in sorted(by_line.items()):
                     f"Each tell needs exactly one home.",
                 )
 
-# ---------------------------------------------------------------- 9. package installs and works
+# ---------------------------------------------------------------- 10. package installs and works
 # The published v0.1.0 zip shipped 13 of 17 rules for two months because nothing
 # compared the archive against the tree. This builds the release zip, installs it
 # through `vale sync` exactly as a consumer does, and lints through the installed

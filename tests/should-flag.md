@@ -632,6 +632,14 @@ Data indicated a drop.
 
 Studies indicate a drop.
 
+Research has shown a correlation.
+
+Studies have shown a decline.
+
+Data has suggested a drop.
+
+Research has indicated a change.
+
 Data indicating a decline was published.
 
 Many believe this holds.
@@ -979,7 +987,7 @@ overlapping alerts. The double-flag check is what keeps them honest.
 
 Another crucial consideration emerged.
 
-In today's landscape of tools, the market moved.
+In today's landscape, the market moved.
 
 It is important to note another important consideration.
 

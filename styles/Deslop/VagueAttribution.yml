@@ -16,6 +16,7 @@ tokens:
   - 'critics\s+(?:say|said|saying|argue|argued|arguing|claim|claimed|claiming)'
   - 'sources\s+(?:say|said|saying)'
   - '(?:research|studies|data)\s+(?:show|shows|showed|showing|suggest|suggests|suggested|suggesting|indicate|indicates|indicated|indicating)'
+  - '(?:research|studies|data)\s+ha(?:s|ve)\s+(?:shown|suggested|indicated)'
   - 'many\s+(?:believe|believed|believing|argue|argued|arguing|say|said|saying)'
   - 'some\s+(?:believe|believed|believing|argue|argued|arguing|say|said|saying|would\s+say)'
   - 'it\s+is\s+widely\s+believed'

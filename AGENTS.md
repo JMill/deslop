@@ -164,7 +164,8 @@ tree, but it cannot make you tag.
 - Every example slop word in docs is backtick-quoted so deslop does not flag its own guide.
 - Every new tell gets a line in `tests/should-flag.md`; every narrowed token gets its
   ordinary usage in `tests/should-pass.md`.
-- A fixture line must be matched by exactly one token of its rule. If a sibling token
+- A fixture line must be matched by exactly one token of its rule, which the suite now
+  enforces as an `ambiguous fixture` failure. If a sibling token
   also matches it, deleting a branch leaves the line still alerting and the loss goes
   unnoticed — `The evolving landscape of tooling` fired through `landscape of` too, so
   it became `The evolving landscape changed`.

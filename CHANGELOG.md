@@ -85,6 +85,9 @@ changes below alone suggest.
   regex accept combinations that are not English (`critics claims`) while hiding real forms
   inside character classes. `both perspective merit consideration`, `in today world`, and
   `unlock insight` were likewise accepted by stray optional markers.
+- **Perfect-form attribution matches.** `research has shown`, `studies have shown`,
+  `data has suggested` produced no alert: the auxiliary broke adjacency and the irregular
+  participle `shown` was absent.
 - **Gerund attribution matches.** `research suggesting`, `data indicating`,
   `experts arguing`, and `critics claiming` slipped past `VagueAttribution`, which only
   covered finite verb forms. `deep dived` likewise slipped past `deep dive`.
