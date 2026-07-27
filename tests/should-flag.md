@@ -768,27 +768,31 @@ It turbocharges the build.
 
 Turbocharging the build now.
 
-Empower the team.
+Empower your team.
 
-It empowers developers.
+It empowers your developers.
 
-An empowering change.
+Empowering our teams further.
 
-Streamline the process.
+It empowered our staff.
 
-It streamlines review.
+Streamline your process.
 
-A streamlined workflow.
+It streamlines your review.
 
-Streamlining the process now.
+Streamlining our workflow now.
+
+It streamlined our process.
 
 Showcase the results.
 
-It showcases the design.
+It showcases our design.
 
-Showcasing the platform.
+Showcasing your platform.
 
-Showcased the results already.
+Showcased its results already.
+
+They showcase their work.
 
 Unparalleled performance.
 
@@ -862,12 +866,6 @@ Let's dive right in.
 
 Let's get started.
 
-Let's explore.
-
-Let's take a look.
-
-Let's take a closer look.
-
 Let’s dive in with a curly quote.
 
 Here’s the thing, curly.
@@ -918,7 +916,13 @@ If you have any more questions, ask.
 
 Don’t hesitate to ask about the curly form.
 
-Is there anything else I can do?
+Is there anything else I can help with?
+
+Is there anything else we could do?
+
+Is there anything else I could assist with?
+
+Is there anything else we can clarify?
 
 ## Cross-rule collisions
 

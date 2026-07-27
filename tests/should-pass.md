@@ -44,6 +44,22 @@ We used a good question from the survey.
 
 That leaves one excellent question unanswered.
 
+## Collaborative and product prose that is not assistant filler
+
+Let's take a closer look at the query plan before optimising.
+
+Let's explore the two options and pick one.
+
+Is there anything else we should test before release?
+
+The showcase app in examples/ demonstrates the API.
+
+We streamline the build by caching the module graph.
+
+The migration empowers operators to roll back without a deploy.
+
+She said she would be happy to help with the review.
+
 ## Sentence shapes that are fine
 
 The parser handles three cases — nested lists being the awkward one.

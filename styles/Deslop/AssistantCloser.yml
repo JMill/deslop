@@ -12,4 +12,4 @@ tokens:
   - 'feel\s+free\s+to\s+(?:reach\s+out|ask|let\s+me\s+know)'
   - "don\\s*['\u2019]?t\\s+hesitate\\s+to\\s+(?:ask|reach\\s+out)"
   - 'if\s+you\s+have\s+any\s+(?:other\s+|further\s+|more\s+)?questions'
-  - 'is\s+there\s+anything\s+else'
+  - 'is\s+there\s+anything\s+else\s+(?:I|we)\s+(?:can|could)\s+(?:help|do|assist|clarify)'

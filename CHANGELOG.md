@@ -66,6 +66,15 @@ changes below alone suggest.
   `it's worth noting`, `in today's world`, `let's dive in`, `It's not X. It's Y.`) only
   accepted a plain `'`, so prose that had been through an editor slipped past them.
 
+- **The new assistant and marketing rules no longer fire on ordinary prose.**
+  `Let's take a closer look at the query plan`, `Let's explore the two options`,
+  `Is there anything else we should test?`, `the showcase app in examples/`,
+  `we streamline the build by caching`, and `the migration empowers operators` were all
+  flagged. `showcase`, `streamline`, and `empower` now require the possessive that marks
+  the marketing register (`streamline your workflow`), `is there anything else` requires
+  the offer-of-help that follows it, and `let's explore` / `let's take a look` are gone —
+  they are ordinary collaborative writing. Recall on marketing copy is unchanged; recall
+  on bare `streamline` / `empower` / `showcase` is deliberately given up for precision.
 - **`great question` no longer fires mid-sentence.** It flagged ordinary prose such as
   `the design raises an interesting question about caching`; it now requires the
   sentence-initial position that makes it throat-clearing.
