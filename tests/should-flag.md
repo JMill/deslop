@@ -574,6 +574,8 @@ Sources say it landed.
 
 Sources said it landed.
 
+Sources saying it landed were vague.
+
 Research shows a change.
 
 Research showed a change.

@@ -9,7 +9,7 @@ ignorecase: true
 tokens:
   - 'experts?\s+(?:says?|said|saying|argu(?:e[sd]?|ing)|suggest(?:s|ed|ing)?|believ(?:e[sd]?|ing)|claim(?:s|ed|ing)?)'
   - 'critics\s+(?:says?|said|saying|argu(?:e[sd]?|ing)|claim(?:s|ed|ing)?)'
-  - 'sources\s+(?:say|said)'
+  - 'sources\s+(?:say|said|saying)'
   - '(?:research|studies|data)\s+(?:show(?:s|ed|ing)?|suggest(?:s|ed|ing)?|indicat(?:e[sd]?|ing))'
   - 'many\s+(?:believe[sd]?|argue[sd]?|say|said)'
   - 'some\s+(?:believe[sd]?|argue[sd]?|say|said|would\s+say)'
