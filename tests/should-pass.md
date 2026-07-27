@@ -62,6 +62,8 @@ She said she would be happy to help with the review.
 
 ## Terms of art that read like corporate filler
 
+The fund uses financial leverage of two to one.
+
 The invoice includes value-added tax at the standard rate.
 
 We sell through a value-added reseller in each region.

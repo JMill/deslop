@@ -53,4 +53,6 @@ tokens:
   - 'embark(?:s|ed|ing)?\s+on'
   - 'cornerstone'
   - 'stark\s+reminder'
-  - 'leverag(?:e|es|ed|ing)'
+  # Scoped to the verb sense that takes an object. Bare `leverage` fires on
+  # `financial leverage`, which is a term of art, not slop.
+  - 'leverag(?:e|es|ed|ing)\s+(?:a|an|the|our|your|its|their)\b'

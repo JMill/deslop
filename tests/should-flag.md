@@ -272,11 +272,17 @@ A stark reminder of the cost.
 
 Leveraging the existing stack.
 
-She leverages it daily.
+She leverages our cache daily.
 
-He leveraged the cache.
+He leveraged a shortcut.
 
-They leverage the index.
+They leverage their index.
+
+It leverages an internal API.
+
+We leverage your data.
+
+The team leverages its position.
 
 ## Substitutions
 

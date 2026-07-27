@@ -4,6 +4,15 @@ Consumers pointed at `releases/latest/download/Deslop.zip` pick up each release 
 next `vale sync`. Pin a tag instead if you want to choose when that happens — see
 [README](README.md#pin-a-version).
 
+## v0.2.1 — 2026-07-27
+
+### Fixed
+
+- **`leverage` is scoped to its jargon sense.** The bare token flagged `financial
+  leverage`, a term of art. It now requires the object that marks the verb sense, so
+  `leverage our synergies` and `leveraging the stack` still fire while
+  `financial leverage of two to one` is clean.
+
 ## v0.2.0 — 2026-07-27
 
 **Upgrading:** if you synced `v0.1.0`, Vale's shared styles directory still holds that
