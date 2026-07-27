@@ -60,6 +60,12 @@ The migration empowers operators to roll back without a deploy.
 
 She said she would be happy to help with the review.
 
+## Terms of art that read like corporate filler
+
+The invoice includes value-added tax at the standard rate.
+
+We sell through a value-added reseller in each region.
+
 ## Sentence shapes that are fine
 
 The parser handles three cases — nested lists being the awkward one.

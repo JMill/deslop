@@ -30,7 +30,7 @@ tokens:
   - 'when\s+it\s+comes\s+to'
   - 'needless\s+to\s+say'
   - 'unlock(?:s|ed|ing)?\s+(?:the\s+|its\s+|your\s+|their\s+|our\s+)?(?:power|potential|value|insights?|growth)'
-  - 'harness(?:es|ed|ing)?\s+(?:the\s+|its\s+|your\s+|their\s+|our\s+)?(?:power|potential)'
+  - 'harness(?:es|ed|ing)?\s+(?:the|its|your|their|our)\s+(?:power|potential)'
   - 'game[-\s]changer'
   - 'indelible\s+mark'
   - 'vibrant'

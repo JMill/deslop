@@ -8,7 +8,7 @@ level: warning
 ignorecase: true
 tokens:
   - 'experts?\s+(?:says?|said|saying|argu(?:e[sd]?|ing)|suggest(?:s|ed|ing)?|believ(?:e[sd]?|ing)|claim(?:s|ed|ing)?)'
-  - 'critics\s+(?:says?|said|saying|argu(?:e[sd]?|ing)|claim(?:s|ed|ing)?)'
+  - 'critics\s+(?:say|said|saying|argu(?:e|ed|ing)|claim(?:ed|ing)?)'
   - 'sources\s+(?:say|said|saying)'
   - '(?:research|studies|data)\s+(?:show(?:s|ed|ing)?|suggest(?:s|ed|ing)?|indicat(?:e[sd]?|ing))'
   - 'many\s+(?:believ(?:e[sd]?|ing)|argu(?:e[sd]?|ing)|say|said|saying)'

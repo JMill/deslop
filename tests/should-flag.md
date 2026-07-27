@@ -112,6 +112,14 @@ It unlocks growth for teams.
 
 We unlock insights daily.
 
+It unlocks its potential.
+
+Unlock your potential now.
+
+They unlock their value.
+
+We unlock our growth.
+
 Harnessing the power of the data.
 
 Harness the potential here.
@@ -210,6 +218,8 @@ We foster inclusion actively.
 
 It fosters connection across sites.
 
+It fosters the culture we want.
+
 A swift response followed.
 
 A swift action was taken.
@@ -247,6 +257,8 @@ Two deep dives later.
 We are deep diving again.
 
 We deep dived into the logs.
+
+We embark on the migration.
 
 We embarked on the migration.
 
@@ -356,7 +368,13 @@ A transformational quarter.
 
 Mission-critical infrastructure.
 
-A value-added service.
+A value-added proposition.
+
+A value-added offering.
+
+A value-added solution.
+
+A value-added experience.
 
 The value-add is unclear.
 
@@ -389,6 +407,8 @@ She touches base weekly.
 We touched base already.
 
 They are touching base often.
+
+Do not double-click on that.
 
 Stop double-clicking on this.
 
@@ -437,6 +457,8 @@ Drinking from the firehose.
 They drank from the firehose.
 
 He drinks from the fire hose.
+
+They drink from the firehose daily.
 
 We have drunk from the firehose.
 
@@ -540,6 +562,10 @@ Experts argues the case.
 
 Experts suggest caution.
 
+An expert suggests caution.
+
+An expert claims the opposite.
+
 Experts suggested caution.
 
 Experts suggesting caution were right.
@@ -568,6 +594,10 @@ Critics arguing against it were loud.
 
 Critics claim the reverse.
 
+Critics claimed the reverse.
+
+Critics argued the point again.
+
 Critics claiming the reverse were wrong.
 
 Sources say it landed.
@@ -577,6 +607,10 @@ Sources said it landed.
 Sources saying it landed were vague.
 
 Research shows a change.
+
+Studies show a change.
+
+Research suggests otherwise.
 
 Research showed a change.
 
@@ -907,6 +941,8 @@ Feel free to let me know.
 Don't hesitate to ask.
 
 Don't hesitate to reach out.
+
+If you have any questions, ask.
 
 If you have any other questions, ask.
 

@@ -15,4 +15,5 @@ tokens:
   - 'holistic(?:ally)?'
   - 'transform(?:ational|ative)'
   - 'mission[-\s]critical'
-  - 'value[-\s]add(?:ed)?'
+  - 'value[-\s]add\b'
+  - 'value[-\s]added\s+(?:proposition|offering|solution|experience)'

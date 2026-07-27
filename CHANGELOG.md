@@ -75,6 +75,9 @@ changes below alone suggest.
   the offer-of-help that follows it, and `let's explore` / `let's take a look` are gone —
   they are ordinary collaborative writing. Recall on marketing copy is unchanged; recall
   on bare `streamline` / `empower` / `showcase` is deliberately given up for precision.
+- **`value-added` no longer flags terms of art.** `value-added tax` and
+  `value-added reseller` have precise legal meanings; only the marketing compounds
+  (`value-added proposition`, `offering`, `solution`, `experience`) now fire.
 - **`great question` no longer fires mid-sentence.** It flagged ordinary prose such as
   `the design raises an interesting question about caching`; it now requires the
   sentence-initial position that makes it throat-clearing.

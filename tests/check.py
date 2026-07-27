@@ -158,39 +158,129 @@ if yaml is not None:
 checks_run += 1
 
 
-def pinned_variants(pattern):
-    """Yield (variant, branch) with one top-level alternation group pinned."""
-    variants, i = [], 0
+def _parse(pattern, i=0):
+    """Parse the regex subset used by these rules into nested alternations.
+
+    Returns (alts, i) where alts is a list of alternatives and each alternative
+    is a list of nodes: ("lit", text) or ("group", inner_alts, optional).
+    """
+    alts = [[]]
     while i < len(pattern):
-        if pattern[i] == "(":
-            depth, j = 1, i + 1
-            while j < len(pattern) and depth:
-                if pattern[j] == "\\":
-                    j += 2
-                    continue
-                depth += (pattern[j] == "(") - (pattern[j] == ")")
-                j += 1
-            inner = pattern[i + 1 : j - 1]
-            body = inner[2:] if inner.startswith("?:") else inner
-            alts, d, cur = [], 0, ""
-            for ch in body:
-                if ch == "(":
-                    d += 1
-                elif ch == ")":
-                    d -= 1
-                if ch == "|" and d == 0:
-                    alts.append(cur)
-                    cur = ""
-                else:
-                    cur += ch
-            alts.append(cur)
-            if len(alts) > 1:
-                for alt in alts:
-                    variants.append((pattern[:i] + "(?:" + alt + ")" + pattern[j:], alt))
-            i = j
+        c = pattern[i]
+        if c == "\\":
+            alts[-1].append(("lit", pattern[i : i + 2]))
+            i += 2
             continue
+        if c == "[":
+            j = i + 1
+            while j < len(pattern) and pattern[j] != "]":
+                j += 2 if pattern[j] == "\\" else 1
+            alts[-1].append(("lit", pattern[i : j + 1]))
+            i = j + 1
+            continue
+        if c == "(":
+            i += 1
+            if pattern[i : i + 2] == "?:":
+                i += 2
+            inner, i = _parse(pattern, i)
+            i += 1  # consume ')'
+            optional = i < len(pattern) and pattern[i] == "?"
+            if optional:
+                i += 1
+            alts[-1].append(("group", inner, optional))
+            continue
+        if c == ")":
+            return alts, i
+        if c == "|":
+            alts.append([])
+            i += 1
+            continue
+        alts[-1].append(("lit", c))
         i += 1
-    return variants
+    return alts, i
+
+
+def _render(alts, pins):
+    """Render the tree back to a regex. `pins` maps id(alts) -> chosen index, or
+    None to omit an optional group entirely. A pinned group is made mandatory so
+    the probe cannot be satisfied by the base form."""
+    key = id(alts)
+    chosen = alts if key not in pins else None
+    if key in pins:
+        if pins[key] is None:
+            return ""
+        chosen = [alts[pins[key]]]
+    out = []
+    for seq in chosen:
+        piece = ""
+        for node in seq:
+            if node[0] == "lit":
+                piece += node[1]
+            else:
+                _, inner, optional = node
+                body = _render(inner, pins)
+                if body == "":
+                    continue
+                piece += "(?:" + body + ")"
+                if optional and id(inner) not in pins:
+                    piece += "?"
+        out.append(piece)
+    return "|".join(out)
+
+
+def _label(seq_alts, index):
+    """Best-effort readable name for an alternative."""
+    text = ""
+    for node in seq_alts[index]:
+        text += node[1] if node[0] == "lit" else "(...)"
+    return text
+
+
+def pinned_variants(pattern):
+    """Yield (probe, branch) with one branch forced, along its whole path.
+
+    Two things this has to get right, both of which a naive version gets wrong:
+    a pinned branch must be made MANDATORY (otherwise an optional group lets the
+    base form satisfy every probe), and every enclosing group must be pinned to
+    the alternative containing it (otherwise a sibling branch can satisfy the
+    probe instead).
+    """
+    try:
+        tree, _ = _parse(pattern)
+    except Exception:
+        return []
+
+    targets = []
+
+    def collect(alts, ancestors):
+        for ai, seq in enumerate(alts):
+            for node in seq:
+                if node[0] != "group":
+                    continue
+                _, inner, optional = node
+                anc = ancestors + [(alts, ai)]
+                targets.append((inner, optional, anc))
+                collect(inner, anc)
+
+    collect(tree, [])
+    if len(tree) > 1:
+        targets.insert(0, (tree, False, []))
+
+    probes = []
+    for inner, optional, ancestors in targets:
+        if len(inner) <= 1 and not optional:
+            continue
+        base_pins = {id(a): idx for a, idx in ancestors}
+        if len(inner) > 1:
+            for k in range(len(inner)):
+                pins = dict(base_pins)
+                pins[id(inner)] = k
+                probes.append((_render(tree, pins), _label(inner, k)))
+        if optional:
+            pins = dict(base_pins)
+            pins[id(inner)] = None
+            probes.append((_render(tree, pins), "<omitted>"))
+    return probes
 
 
 if yaml is not None:
