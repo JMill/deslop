@@ -6,6 +6,11 @@ next `vale sync`. Pin a tag instead if you want to choose when that happens — 
 
 ## v0.2.0 — 2026-07-27
 
+**Upgrading:** if you synced `v0.1.0`, Vale's shared styles directory still holds that
+copy and it shadows the new one, so removed rules keep firing and phrases can report
+twice. Delete `Deslop` from the shared styles directory and run `vale sync` again. See
+[README](README.md#upgrading-from-an-earlier-version).
+
 The first release since `v0.1.0`. `v0.1.0` shipped 13 of the 17 rule files that existed in
 the repository, so `CorporateMetaphor`, `Hedging`, `OpenerCliche`, and `Substitutions` have
 never been in a published package, and `SlopVocab` shipped 29 of its 56 tokens. Installing

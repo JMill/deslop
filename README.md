@@ -89,6 +89,28 @@ Packages = https://github.com/JMill/deslop/releases/download/v0.2.0/Deslop.zip
 Vale caches by URL, so switching to a pinned tag also makes `vale sync` reproducible.
 See [CHANGELOG.md](CHANGELOG.md) for what moves between versions.
 
+### Upgrading from an earlier version
+
+If you have synced deslop before, Vale may still hold the old package in its shared
+styles directory, and that copy shadows the one `vale sync` just downloaded. The symptom
+is confusing: rules you removed keep firing, and a phrase can be reported twice by two
+different rules.
+
+Clear the stale copy once, then sync again:
+
+```sh
+rm -rf styles/Deslop                                           # your project's copy
+rm -rf "$HOME/Library/Application Support/vale/styles/Deslop"  # macOS shared copy
+rm -rf "$HOME/.local/share/vale/styles/Deslop"                 # Linux shared copy
+vale sync
+```
+
+Confirm you got the whole package — v0.2.0 ships 20 rule files:
+
+```sh
+ls styles/Deslop/*.yml | wc -l
+```
+
 For a full copy-paste guide including CI setup, see [docs/ADOPTING.md](docs/ADOPTING.md).
 
 For the craft reference behind these rules, the principle, the tests, the hard rules, and
