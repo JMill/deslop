@@ -10,6 +10,6 @@ tokens:
   - 'hope\s+(?:this|that)\s+(?:helps|clarifies)'
   - 'let\s+me\s+know\s+if\s+you\s+(?:have|need|would|want)'
   - 'feel\s+free\s+to\s+(?:reach\s+out|ask|let\s+me\s+know)'
-  - "don\\s*'?t\\s+hesitate\\s+to\\s+(?:ask|reach\\s+out)"
+  - "don\\s*['\u2019]?t\\s+hesitate\\s+to\\s+(?:ask|reach\\s+out)"
   - 'if\s+you\s+have\s+any\s+(?:other\s+|further\s+|more\s+)?questions'
   - 'is\s+there\s+anything\s+else'

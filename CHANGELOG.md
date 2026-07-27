@@ -61,6 +61,10 @@ changes below alone suggest.
 - **The release is gated on the suite**, which builds the zip, extracts it, and lints
   through the extracted copy. An incomplete or wrongly nested archive cannot be published.
 
+- **Typographic apostrophes match.** Rules containing contractions (`don't hesitate`,
+  `it's worth noting`, `in today's world`, `let's dive in`, `It's not X. It's Y.`) only
+  accepted a plain `'`, so prose that had been through an editor slipped past them.
+
 ### Changed
 
 - `OpenerCliche` is no longer anchored to the start of a sentence: `Companies in today's

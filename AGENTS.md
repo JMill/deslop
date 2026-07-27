@@ -92,6 +92,9 @@ any of them; the suite is the only thing that will tell you.
   without complaint and still matches "test harness the". You cannot carve out exceptions
   this way; narrow the pattern with real context instead, or let consumers use a Vale
   vocabulary (`accept.txt` entries are filtered out of every rule's matches).
+- **Typographic apostrophes are not normalised.** `don't` written with a plain `'` does
+  not match `don’t`, and editors rewrite quotes routinely. Spell the class out:
+  `don\s*['’]?t`. This applies to `tokens` and `raw` alike.
 - **Substitution swaps support capture backreferences.** `'utiliz(e|es|ed|ing)': 'us$1'`
   gives the right suggestion for all four forms on one line. Irregular forms
   (`comprehended` -> `understood`) still need their own entry.

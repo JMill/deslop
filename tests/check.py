@@ -149,7 +149,71 @@ if yaml is not None:
                     f"Add a fixture line for it, on its own line.",
                 )
 
-# ---------------------------------------------------------------- 6. no double-flagging
+# ---------------------------------------------------------------- 6. every alternation branch is exercised
+# Token coverage is satisfied by any one form, so `supercharg(?:e|es|ed|ing)`
+# passes on `supercharge` alone and a later edit could drop `ed|ing` unnoticed.
+# This pins each branch of each alternation to a fixture line of its own.
+checks_run += 1
+
+
+def pinned_variants(pattern):
+    """Yield (variant, branch) with one top-level alternation group pinned."""
+    variants, i = [], 0
+    while i < len(pattern):
+        if pattern[i] == "(":
+            depth, j = 1, i + 1
+            while j < len(pattern) and depth:
+                if pattern[j] == "\\":
+                    j += 2
+                    continue
+                depth += (pattern[j] == "(") - (pattern[j] == ")")
+                j += 1
+            inner = pattern[i + 1 : j - 1]
+            body = inner[2:] if inner.startswith("?:") else inner
+            alts, d, cur = [], 0, ""
+            for ch in body:
+                if ch == "(":
+                    d += 1
+                elif ch == ")":
+                    d -= 1
+                if ch == "|" and d == 0:
+                    alts.append(cur)
+                    cur = ""
+                else:
+                    cur += ch
+            alts.append(cur)
+            if len(alts) > 1:
+                for alt in alts:
+                    variants.append((pattern[:i] + "(?:" + alt + ")" + pattern[j:], alt))
+            i = j
+            continue
+        i += 1
+    return variants
+
+
+if yaml is not None:
+    for path in sorted(STYLE_DIR.glob("*.yml")):
+        spec = yaml.safe_load(path.read_text())
+        if spec.get("extends") == "occurrence":
+            continue
+        flags = re.IGNORECASE if spec.get("ignorecase") else 0
+        patterns = [(t, True) for t in spec.get("tokens", [])]
+        patterns += [(k, True) for k in spec.get("swap", {})]
+        for pattern, wrapped in patterns:
+            for variant, branch in pinned_variants(pattern):
+                probe = rf"\b(?:{variant})\b" if wrapped else variant
+                try:
+                    hit = re.search(probe, fixture_text, flags)
+                except re.error:
+                    continue  # the whole-token check already reported this
+                if not hit:
+                    fail(
+                        "unexercised branch",
+                        f"Deslop.{path.stem}: branch {branch!r} of {pattern!r} "
+                        f"matches no fixture line. Give it one.",
+                    )
+
+# ---------------------------------------------------------------- 7. no double-flagging
 checks_run += 1
 by_line = {}
 for a in flag_alerts:
@@ -169,11 +233,12 @@ for line, alerts in sorted(by_line.items()):
                     f"Each tell needs exactly one home.",
                 )
 
-# ---------------------------------------------------------------- 7. package completeness
+# ---------------------------------------------------------------- 7. package installs and works
 # The published v0.1.0 zip shipped 13 of 17 rules for two months because nothing
-# compared the archive against the tree. This check does, then goes further and
-# lints through the extracted copy — which is what catches a wrong directory
-# level or a lowercase `deslop/` that only fails on case-sensitive CI.
+# compared the archive against the tree. This builds the release zip, installs it
+# through `vale sync` exactly as a consumer does, and lints through the installed
+# copy. `Packages` accepts a local path, so this needs no network and can gate a
+# release before the artifact exists.
 checks_run += 1
 on_disk = {p.name for p in STYLE_DIR.iterdir() if p.is_file()}
 
@@ -185,7 +250,6 @@ with tempfile.TemporaryDirectory() as tmp:
     )
     with zipfile.ZipFile(zip_path) as zf:
         names = [n for n in zf.namelist() if not n.endswith("/")]
-        zf.extractall(tmp / "styles")
 
     # Compare exact archive paths, not basenames: a file that slipped into a
     # nested directory would still be "present" by basename while `vale sync`
@@ -194,13 +258,6 @@ with tempfile.TemporaryDirectory() as tmp:
     missing = expected_paths - set(names)
     if missing:
         fail("packaging", f"release zip is missing {sorted(missing)}")
-    if "Deslop/meta.json" not in names:
-        found = [n for n in names if n.endswith("meta.json")] or "nothing"
-        fail(
-            "packaging",
-            f"package metadata must be at exactly 'Deslop/meta.json' (found {found}); "
-            "`vale sync` will reject the package otherwise",
-        )
 
     # Every entry must sit directly under a top-level `Deslop/` directory,
     # spelled exactly that way — `BasedOnStyles = Deslop` is case-sensitive on
@@ -209,17 +266,44 @@ with tempfile.TemporaryDirectory() as tmp:
     if misplaced:
         fail("packaging", f"every zip entry must be 'Deslop/<file>', found {misplaced}")
 
-    # Now lint through the extracted package exactly as a consumer would.
+    # `vale sync` does NOT validate meta.json — a malformed one syncs happily and
+    # only bites later. Checked here explicitly rather than assumed.
+    if "Deslop/meta.json" not in names:
+        found = [n for n in names if n.endswith("meta.json")] or "nothing"
+        fail("packaging", f"metadata must be at exactly 'Deslop/meta.json' (found {found})")
+    else:
+        with zipfile.ZipFile(zip_path) as zf:
+            try:
+                meta = json.loads(zf.read("Deslop/meta.json"))
+            except json.JSONDecodeError as exc:
+                meta = None
+                fail("packaging", f"Deslop/meta.json is not valid JSON ({exc})")
+        if meta is not None and "vale_version" not in meta:
+            fail("packaging", "Deslop/meta.json has no 'vale_version' key")
+
+    # Install it the way a consumer does, then lint through the installed copy.
     vale_bin = os.environ.get("VALE_BIN")
     if not vale_bin:
-        fail("packaging", "VALE_BIN not set; cannot verify the extracted package")
+        fail("packaging", "VALE_BIN not set; cannot verify the built package")
     else:
+        styles_dir = tmp / "styles"
+        styles_dir.mkdir(exist_ok=True)  # vale sync stages to a temp path without it
         cfg = tmp / ".vale.ini"
         cfg.write_text(
-            f"StylesPath = {tmp / 'styles'}\n"
-            "MinAlertLevel = suggestion\n\n"
+            f"StylesPath = {styles_dir}\n"
+            "MinAlertLevel = suggestion\n"
+            f"Packages = {zip_path}\n\n"
             "[*.md]\nBasedOnStyles = Deslop\n"
         )
+        sync = subprocess.run(
+            [vale_bin, "--config", str(cfg), "sync"], capture_output=True, text=True
+        )
+        if sync.returncode != 0:
+            fail("packaging", f"`vale sync` rejected the package: {sync.stderr.strip()}")
+        installed = {p.name for p in (styles_dir / "Deslop").glob("*")} if (styles_dir / "Deslop").is_dir() else set()
+        if on_disk - installed:
+            fail("packaging", f"`vale sync` did not install {sorted(on_disk - installed)}")
+
         proc = subprocess.run(
             [vale_bin, "--config", str(cfg), "--output=JSON",
              str(TESTS / "should-flag.md")],
@@ -229,17 +313,17 @@ with tempfile.TemporaryDirectory() as tmp:
             repacked = json.loads(proc.stdout or "{}")
         except json.JSONDecodeError:
             repacked = {}
-            fail("packaging", f"vale failed against extracted package: {proc.stderr.strip()}")
+            fail("packaging", f"vale failed against installed package: {proc.stderr.strip()}")
         repacked_alerts = alerts_for(repacked, "should-flag.md")
         if not repacked_alerts:
             fail(
                 "packaging",
-                "the extracted package produced no alerts — consumers would "
+                "the installed package produced no alerts — consumers would "
                 "install it and silently lint nothing",
             )
         repacked_rules = {a["Check"].split(".", 1)[1] for a in repacked_alerts}
         for dead in sorted(rule_files - repacked_rules):
-            fail("packaging", f"Deslop.{dead} does not fire from the packaged copy")
+            fail("packaging", f"Deslop.{dead} does not fire from the installed copy")
 
 # ---------------------------------------------------------------- report
 if failures:

@@ -23,9 +23,9 @@ tokens:
   - 'ever[-\s](?:evolving|changing|expanding)'
   - 'fast[-\s]paced\s+world'
   - 'at\s+the\s+forefront'
-  - "it\\s*'s\\s+(?:also\\s+)?worth\\s+noting"
+  - "it\\s*['\u2019]s\\s+(?:also\\s+)?worth\\s+noting"
   - 'it\s+is\s+(?:also\s+)?worth\s+noting'
-  - "it\\s*'s\\s+important\\s+to\\s+note"
+  - "it\\s*['\u2019]s\\s+important\\s+to\\s+note"
   - 'it\s+is\s+important\s+to\s+note'
   - 'when\s+it\s+comes\s+to'
   - 'needless\s+to\s+say'
@@ -40,7 +40,7 @@ tokens:
   - 'realm\s+of'
   - 'landscape\s+of'
   - '(?:competitive|evolving|shifting|changing|current|digital|business|technological|regulatory|media)\s+landscape'
-  - "today\\s*'s\\s+landscape"
+  - "today\\s*['\u2019]s\\s+landscape"
   - 'foster(?:s|ed|ing)?\s+(?:a\s+|an\s+|the\s+)?(?:culture|collaboration|innovation|growth|community|environment|sense|understanding|engagement|creativity|trust|dialogue|inclusion|connection)'
   - 'swift(?:ly)?\s+(?:response|action|resolution|progress|adoption|rise|decline)'
   - 'beacon\s+of'

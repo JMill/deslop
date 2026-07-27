@@ -1,6 +1,11 @@
 # Chatbot throat-clearing: the sycophantic acknowledgement and the "let's begin"
 # announcement that precede the actual answer. Both are pure filler in prose.
 #
+# The `[''’]` classes are load-bearing. Vale gives `tokens` entries some
+# smart-quote tolerance -- a plain `'` there matches `’` in prose -- but `raw`
+# patterns get no such treatment, so the curly form must be spelled out. The
+# curly-quote fixtures in should-flag.md are what keep this honest.
+#
 # Two Vale gotchas force the shape of this rule:
 #   1. `tokens` entries are wrapped in \b...\b, which silently stops any pattern
 #      ending in punctuation (`certainly!`) from ever matching. Hence `raw`.
