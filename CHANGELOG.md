@@ -4,6 +4,15 @@ Consumers pointed at `releases/latest/download/Deslop.zip` pick up each release 
 next `vale sync`. Pin a tag instead if you want to choose when that happens — see
 [README](README.md#pin-a-version).
 
+## v0.2.2 — 2026-07-27
+
+### Changed
+
+- **`empower` is banned outright** rather than scoped to `empower your/our`. Treated as
+  always-marketing, in line with the house voice guide. This fires on legitimate
+  policy and governance prose (`the programme empowers participants`); consumers who
+  want the narrower reading can set `Deslop.MarketingVerb = NO` and layer their own.
+
 ## v0.2.1 — 2026-07-27
 
 ### Fixed

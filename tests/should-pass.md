@@ -56,7 +56,6 @@ The showcase app in examples/ demonstrates the API.
 
 We streamline the build by caching the module graph.
 
-The migration empowers operators to roll back without a deploy.
 
 She said she would be happy to help with the review.
 

@@ -11,7 +11,9 @@ tokens:
   - 'revolutioniz(?:e|es|ed|ing)'
   - 'supercharg(?:e|es|ed|ing)'
   - 'turbocharg(?:e|es|ed|ing)'
-  - 'empower(?:s|ed|ing)?\s+(?:your|our)\b'
+  # Banned outright, not collocation-scoped: the house voice guide treats
+  # `empower` as always-marketing. See CHANGELOG v0.2.2.
+  - 'empower(?:s|ed|ing)?'
   - 'streamlin(?:e|es|ed|ing)\s+(?:your|our)\b'
   - 'showcas(?:e|es|ed|ing)\s+(?:your|our|the|its|their)\b'
   - 'unparalleled'
