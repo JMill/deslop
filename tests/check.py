@@ -50,7 +50,35 @@ fired = {a["Check"].split(".", 1)[1] for a in flag_alerts}
 for dead in sorted(rule_files - fired):
     fail("dead rule", f"Deslop.{dead} never matched anything in should-flag.md")
 
-# ---------------------------------------------------------------- 3. expected pairs
+# ---------------------------------------------------------------- 3. every fixture line fires
+# The "no dead rules" check above is satisfied as soon as one token in a rule
+# matches, so a phrase whose inflections were never spelled out can sit in the
+# fixture unflagged, hidden behind another tell on the same line. This requires
+# every prose line to carry its own weight. Headings and HTML comments are the
+# only exemptions.
+checks_run += 1
+flagged_lines = {a["Line"] for a in flag_alerts}
+in_comment = False
+for lineno, raw in enumerate((TESTS / "should-flag.md").read_text().splitlines(), 1):
+    line = raw.strip()
+    if in_comment:
+        if "-->" in line:
+            in_comment = False
+        continue
+    if line.startswith("<!--"):
+        in_comment = "-->" not in line
+        continue
+    if not line or line.startswith("#"):
+        continue
+    if lineno not in flagged_lines:
+        fail(
+            "silent fixture",
+            f"should-flag.md:{lineno} produced no alert: {line!r}. "
+            f"Either no rule covers it (check inflections) or it belongs in "
+            f"should-pass.md.",
+        )
+
+# ---------------------------------------------------------------- 4. expected pairs
 checks_run += 1
 expected_path = TESTS / "expected.tsv"
 for lineno, raw in enumerate(expected_path.read_text().splitlines(), 1):
@@ -68,7 +96,7 @@ for lineno, raw in enumerate(expected_path.read_text().splitlines(), 1):
     if not hit:
         fail("missed", f"{rule} did not flag {phrase!r} (expected.tsv line {lineno})")
 
-# ---------------------------------------------------------------- 4. no double-flagging
+# ---------------------------------------------------------------- 5. no double-flagging
 checks_run += 1
 by_line = {}
 for a in flag_alerts:
@@ -88,7 +116,7 @@ for line, alerts in sorted(by_line.items()):
                     f"Each tell needs exactly one home.",
                 )
 
-# ---------------------------------------------------------------- 5. package completeness
+# ---------------------------------------------------------------- 6. package completeness
 # The published v0.1.0 zip shipped 13 of 17 rules for two months because nothing
 # compared the archive against the tree. This check does, then goes further and
 # lints through the extracted copy — which is what catches a wrong directory
@@ -104,20 +132,29 @@ with tempfile.TemporaryDirectory() as tmp:
     )
     with zipfile.ZipFile(zip_path) as zf:
         names = [n for n in zf.namelist() if not n.endswith("/")]
-        packaged = {Path(n).name for n in names}
         zf.extractall(tmp / "styles")
 
-    missing = on_disk - packaged
+    # Compare exact archive paths, not basenames: a file that slipped into a
+    # nested directory would still be "present" by basename while `vale sync`
+    # laid it down somewhere Vale never reads.
+    expected_paths = {f"Deslop/{name}" for name in on_disk}
+    missing = expected_paths - set(names)
     if missing:
         fail("packaging", f"release zip is missing {sorted(missing)}")
-    if "meta.json" not in packaged:
-        fail("packaging", "release zip has no meta.json; `vale sync` will reject it")
+    if "Deslop/meta.json" not in names:
+        found = [n for n in names if n.endswith("meta.json")] or "nothing"
+        fail(
+            "packaging",
+            f"package metadata must be at exactly 'Deslop/meta.json' (found {found}); "
+            "`vale sync` will reject the package otherwise",
+        )
 
-    # Every entry must sit under a top-level `Deslop/` directory, spelled exactly
-    # that way — `BasedOnStyles = Deslop` is case-sensitive on Linux runners.
-    bad_root = sorted({n.split("/")[0] for n in names} - {"Deslop"})
-    if bad_root:
-        fail("packaging", f"zip root should contain only 'Deslop/', found {bad_root}")
+    # Every entry must sit directly under a top-level `Deslop/` directory,
+    # spelled exactly that way — `BasedOnStyles = Deslop` is case-sensitive on
+    # Linux runners, and a deeper nesting is not read at all.
+    misplaced = sorted(n for n in names if len(n.split("/")) != 2 or not n.startswith("Deslop/"))
+    if misplaced:
+        fail("packaging", f"every zip entry must be 'Deslop/<file>', found {misplaced}")
 
     # Now lint through the extracted package exactly as a consumer would.
     vale_bin = os.environ.get("VALE_BIN")

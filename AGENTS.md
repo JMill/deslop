@@ -73,6 +73,9 @@ any of them; the suite is the only thing that will tell you.
 - **`tokens` entries are wrapped in `\b...\b`.** So `delve` does not match `delved`, and
   `seamless` does not match `seamlessly`. Spell inflections out: `delv(?:e|es|ed|ing)`.
   This is the single most common way to ship a rule that looks right and under-fires.
+  It applies to verb-headed idioms too, where the base form is the *least* common one in
+  practice: `move the goalposts` misses `moved the goalposts`, and `circle back` misses
+  `circled back`. Write `mov(?:e|es|ed|ing)\s+the\s+goalposts`.
 - **A `tokens` entry ending in punctuation never matches.** The trailing `\b` cannot be
   satisfied after `!` or `,`. Use `raw` for those.
 - **Multiple `raw` entries are concatenated, not alternated.** A list of five `raw`
@@ -151,6 +154,9 @@ tree, but it cannot make you tag.
 - Every example slop word in docs is backtick-quoted so deslop does not flag its own guide.
 - Every new tell gets a line in `tests/should-flag.md`; every narrowed token gets its
   ordinary usage in `tests/should-pass.md`.
+- One phrase per fixture line. Every prose line in `should-flag.md` must produce an alert
+  on its own, so a phrase that matches nothing cannot hide behind another tell on the
+  same line. Headings and HTML comments are the only exemptions.
 
 ## Where this sits
 

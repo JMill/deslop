@@ -4,7 +4,7 @@ level: warning
 ignorecase: true
 tokens:
   - 'both\s+have\s+merit'
-  - 'remains\s+to\s+be\s+seen'
+  - 'remain(?:s|ed)\s+to\s+be\s+seen'
   - 'both\s+perspectives?\s+merit\s+consideration'
   - 'only\s+time\s+will\s+tell'
   - 'the\s+jury\s+is\s+still\s+out'
