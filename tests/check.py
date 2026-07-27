@@ -128,13 +128,15 @@ if yaml is not None:
 
     for path in sorted(STYLE_DIR.glob("*.yml")):
         spec = yaml.safe_load(path.read_text())
-        if spec.get("extends") == "occurrence":
-            continue  # single token; the dead-rule check already covers it
-        flags = re.IGNORECASE if spec.get("ignorecase") else 0
+        flags = (re.IGNORECASE if spec.get("ignorecase") else 0) | re.MULTILINE
         patterns = [(t, True) for t in spec.get("tokens", [])]
         patterns += [(k, True) for k in spec.get("swap", {})]
         if spec.get("raw"):
             patterns.append(("".join(spec["raw"]), False))
+        # `occurrence` rules carry a single `token`, used verbatim (no \b wrapping).
+        # Skipping them here would leave their alternations unaudited below.
+        if spec.get("token"):
+            patterns.append((spec["token"], False))
         for pattern, wrapped in patterns:
             compiled = rf"\b(?:{pattern})\b" if wrapped else pattern
             try:
@@ -194,11 +196,11 @@ def pinned_variants(pattern):
 if yaml is not None:
     for path in sorted(STYLE_DIR.glob("*.yml")):
         spec = yaml.safe_load(path.read_text())
-        if spec.get("extends") == "occurrence":
-            continue
-        flags = re.IGNORECASE if spec.get("ignorecase") else 0
+        flags = (re.IGNORECASE if spec.get("ignorecase") else 0) | re.MULTILINE
         patterns = [(t, True) for t in spec.get("tokens", [])]
         patterns += [(k, True) for k in spec.get("swap", {})]
+        if spec.get("token"):
+            patterns.append((spec["token"], False))
         for pattern, wrapped in patterns:
             for variant, branch in pinned_variants(pattern):
                 probe = rf"\b(?:{variant})\b" if wrapped else variant
@@ -213,7 +215,41 @@ if yaml is not None:
                         f"matches no fixture line. Give it one.",
                     )
 
-# ---------------------------------------------------------------- 7. no double-flagging
+# ---------------------------------------------------------------- 7. occurrence tokens keep their branches
+# Branch coverage above proves a branch is exercised; it cannot notice a branch
+# being deleted, because a smaller alternation simply has less to check. For
+# `tokens` rules deletion is caught anyway -- each tell has its own fixture line,
+# which goes silent. An `occurrence` rule fires on density across the whole file,
+# so one line covers many branches and dropping one changes nothing observable.
+# Those branch lists are pinned explicitly.
+checks_run += 1
+if yaml is not None:
+    occurrence_tokens = {}
+    for path in sorted(STYLE_DIR.glob("*.yml")):
+        spec = yaml.safe_load(path.read_text())
+        if spec.get("token"):
+            occurrence_tokens[f"Deslop.{path.stem}"] = spec["token"]
+
+    for lineno, raw in enumerate((TESTS / "expected-branches.tsv").read_text().splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith("#"):
+            continue
+        try:
+            rule, branch = line.split("\t", 1)
+        except ValueError:
+            fail("expected-branches.tsv", f"line {lineno} is not <rule>TAB<branch>: {raw!r}")
+            continue
+        token = occurrence_tokens.get(rule)
+        if token is None:
+            fail("expected-branches.tsv", f"line {lineno}: {rule} is not an occurrence rule")
+        elif branch not in token:
+            fail(
+                "removed branch",
+                f"{rule} no longer contains {branch!r}. Occurrence rules fire on "
+                f"density, so nothing else in the suite would notice.",
+            )
+
+# ---------------------------------------------------------------- 8. no double-flagging
 checks_run += 1
 by_line = {}
 for a in flag_alerts:
@@ -233,7 +269,7 @@ for line, alerts in sorted(by_line.items()):
                     f"Each tell needs exactly one home.",
                 )
 
-# ---------------------------------------------------------------- 7. package installs and works
+# ---------------------------------------------------------------- 9. package installs and works
 # The published v0.1.0 zip shipped 13 of 17 rules for two months because nothing
 # compared the archive against the tree. This builds the release zip, installs it
 # through `vale sync` exactly as a consumer does, and lints through the installed

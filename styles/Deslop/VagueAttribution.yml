@@ -7,10 +7,10 @@ message: "Vague attribution ('%s'). Name the source and affiliation."
 level: warning
 ignorecase: true
 tokens:
-  - 'experts?\s+(?:says?|said|argue[sd]?|suggest(?:s|ed)?|believe[sd]?|claim(?:s|ed)?)'
-  - 'critics\s+(?:says?|said|argue[sd]?|claim(?:s|ed)?)'
+  - 'experts?\s+(?:says?|said|saying|argu(?:e[sd]?|ing)|suggest(?:s|ed|ing)?|believ(?:e[sd]?|ing)|claim(?:s|ed|ing)?)'
+  - 'critics\s+(?:says?|said|saying|argu(?:e[sd]?|ing)|claim(?:s|ed|ing)?)'
   - 'sources\s+(?:say|said)'
-  - '(?:research|studies|data)\s+(?:show(?:s|ed)?|suggest(?:s|ed)?|indicate(?:s|d)?)'
+  - '(?:research|studies|data)\s+(?:show(?:s|ed|ing)?|suggest(?:s|ed|ing)?|indicat(?:e[sd]?|ing))'
   - 'many\s+(?:believe[sd]?|argue[sd]?|say|said)'
   - 'some\s+(?:believe[sd]?|argue[sd]?|say|said|would\s+say)'
   - 'it\s+is\s+widely\s+believed'

@@ -1,0 +1,27 @@
+# <rule>	<branch that must exist in the rule's token>
+#
+# Only `occurrence` rules need this. Everywhere else, deleting a token is caught
+# by the fixture line for that tell going silent. An occurrence rule fires on
+# density across the whole file, so one fixture line covers many branches at once
+# and removing any single one leaves the rule firing exactly as before. Nothing
+# short of pinning the branch list notices.
+
+Deslop.ConjunctiveAdverbOpener	Moreover
+Deslop.ConjunctiveAdverbOpener	Furthermore
+Deslop.ConjunctiveAdverbOpener	Additionally
+Deslop.ConjunctiveAdverbOpener	Notably
+Deslop.ConjunctiveAdverbOpener	Importantly
+Deslop.ConjunctiveAdverbOpener	Consequently
+Deslop.ConjunctiveAdverbOpener	Indeed
+
+Deslop.HollowIntensifier	incredibly
+Deslop.HollowIntensifier	extremely
+Deslop.HollowIntensifier	truly
+Deslop.HollowIntensifier	really
+Deslop.HollowIntensifier	very
+Deslop.HollowIntensifier	highly
+Deslop.HollowIntensifier	remarkably
+Deslop.HollowIntensifier	utterly
+Deslop.HollowIntensifier	profoundly
+
+Deslop.EmDashOveruse	—

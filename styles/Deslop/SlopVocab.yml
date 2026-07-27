@@ -49,7 +49,7 @@ tokens:
   - '(?:intricate|intricacies)'
   - 'seamless(?:ly)?'
   - 'paradigm\s+shift'
-  - 'deep\s+div(?:e|es|ing)'
+  - 'deep\s+div(?:e|es|ed|ing)'
   - 'embark(?:s|ed|ing)?\s+on'
   - 'cornerstone'
   - 'stark\s+reminder'

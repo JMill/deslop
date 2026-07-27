@@ -65,6 +65,10 @@ changes below alone suggest.
   `it's worth noting`, `in today's world`, `let's dive in`, `It's not X. It's Y.`) only
   accepted a plain `'`, so prose that had been through an editor slipped past them.
 
+- **Gerund attribution matches.** `research suggesting`, `data indicating`,
+  `experts arguing`, and `critics claiming` slipped past `VagueAttribution`, which only
+  covered finite verb forms. `deep dived` likewise slipped past `deep dive`.
+
 ### Changed
 
 - `OpenerCliche` is no longer anchored to the start of a sentence: `Companies in today's

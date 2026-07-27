@@ -15,6 +15,7 @@ asset (`Deslop.zip`) that other repos consume through Vale's `Packages` mechanis
 | `tests/should-flag.md` | Deliberate slop. Every rule must fire here at least once. |
 | `tests/should-pass.md` | Ordinary technical prose. Any alert here is a false positive and fails the build. |
 | `tests/expected.tsv` | Pinned `<rule>`/`<phrase>` pairs, mostly inflections and narrowed tokens. |
+| `tests/expected-branches.tsv` | Pinned branch lists for `occurrence` rules, which nothing else protects. |
 | `tests/check.py` | The assertions behind `run.sh`. |
 | `docs/ADOPTING.md` | Copy-paste integration guide: `.vale.ini`, CI, customizing, composing private styles. |
 | `.github/workflows/test.yml` | Runs the rule suite on every push and PR. |
@@ -167,6 +168,10 @@ tree, but it cannot make you tag.
 - Give each inflected form its own fixture line. For verb-headed idioms the base form is
   the least common one in running prose, so `moved the goalposts` earns a line more than
   `move the goalposts` does.
+- Editing an `occurrence` rule means editing `tests/expected-branches.tsv` too. Those
+  rules fire on density across the whole file, so one fixture line covers every branch at
+  once and removing a single one changes nothing the suite can see. The pinned list is
+  the only thing that notices.
 
 ## Where this sits
 

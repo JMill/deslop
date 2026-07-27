@@ -246,6 +246,8 @@ Two deep dives later.
 
 We are deep diving again.
 
+We deep dived into the logs.
+
 We embarked on the migration.
 
 She embarks on the rewrite.
@@ -526,9 +528,13 @@ An expert says otherwise.
 
 Experts said it would hold.
 
+Experts saying otherwise are wrong.
+
 Experts argue the point.
 
 Experts argued the point.
+
+Experts arguing the point were ignored.
 
 Experts argues the case.
 
@@ -536,21 +542,33 @@ Experts suggest caution.
 
 Experts suggested caution.
 
+Experts suggesting caution were right.
+
 Experts believe it works.
 
 Experts believed it once.
+
+Experts believing it were mistaken.
 
 Experts claim the opposite.
 
 Experts claimed the opposite.
 
+Experts claiming the opposite were wrong.
+
 Critics say it fails.
 
 Critics said it failed.
 
+Critics saying otherwise are wrong.
+
 Critics argue against it.
 
+Critics arguing against it were loud.
+
 Critics claim the reverse.
+
+Critics claiming the reverse were wrong.
 
 Sources say it landed.
 
@@ -560,15 +578,21 @@ Research shows a change.
 
 Research showed a change.
 
+Research showing a change was cited.
+
 Studies suggest otherwise.
 
 Studies suggested otherwise.
+
+Studies suggesting a link are preliminary.
 
 Data shows a drop.
 
 Data indicates a drop.
 
 Data indicated a drop.
+
+Data indicating a decline was published.
 
 Many believe this holds.
 
@@ -901,8 +925,8 @@ One dash — two dashes — three dashes — four here.
 
 ## ConjunctiveAdverbOpener
 
-Moreover, a point. Furthermore, another. Additionally, a third. Notably, a fourth. Importantly, a fifth.
+Moreover, a point. Furthermore, another. Additionally, a third. Notably, a fourth. Importantly, a fifth. Consequently, a sixth. Indeed, a seventh.
 
 ## HollowIntensifier
 
-Incredibly, extremely, truly, really, very, highly, remarkably, utterly good.
+Incredibly, extremely, truly, really, very, highly, remarkably, utterly, profoundly good.
