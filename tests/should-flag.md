@@ -834,6 +834,10 @@ Empowering our teams further.
 
 It empowered our staff.
 
+The programme empowers participants to publish.
+
+Empowerment is the stated goal.
+
 Streamline your process.
 
 It streamlines your review.

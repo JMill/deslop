@@ -1,0 +1,13 @@
+# Words that are marketing filler often enough to be worth surfacing, but that
+# have a real sense in policy, governance, and legal writing. Broad match so the
+# tell is never missed, `suggestion` level so it never blocks a build.
+#
+# This mirrors the calibration deslop's own consumers use: a universal tool that
+# cries wolf on real domain prose gets ignored. `empower` is flagged everywhere,
+# and the reader decides.
+extends: existence
+message: "'%s' is often marketing filler. State the concrete capability, or keep it if the governance sense is meant."
+level: suggestion
+ignorecase: true
+tokens:
+  - 'empower(?:s|ed|ing|ment)?'

@@ -4,6 +4,16 @@ Consumers pointed at `releases/latest/download/Deslop.zip` pick up each release 
 next `vale sync`. Pin a tag instead if you want to choose when that happens — see
 [README](README.md#pin-a-version).
 
+## v0.2.3 — 2026-07-27
+
+### Changed
+
+- **`empower` moved to a new `ContestedWord.yml` at `suggestion` level**, replacing the
+  outright ban added in v0.2.2. It matches broadly, so the tell is never missed, but it
+  never blocks a build — the word has a real sense in policy and governance writing
+  (`legally empowered`, `empowerment as a policy concept`). This is the calibration
+  deslop's own consumers already run in their bespoke linters.
+
 ## v0.2.2 — 2026-07-27
 
 ### Changed

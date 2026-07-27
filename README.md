@@ -12,7 +12,8 @@ Each rule family lives in its own file under `styles/Deslop/`:
 | --- | --- |
 | `SlopVocab.yml` | Stock words and phrases with no one-word swap: `delve`, `tapestry`, `plethora`, `leverage`, `seamless`, `harness the power`, `a testament to`, and more |
 | `Substitutions.yml` | One-to-one swaps: `robust`->`strong`, `crucial`->`important`, `comprehend`->`understand`, `utilize`->`use` |
-| `MarketingVerb.yml` | Launch-copy verbs: `revolutionize`, `supercharge`, `empower`, `streamline`, `showcase`, `unparalleled` |
+| `MarketingVerb.yml` | Launch-copy verbs: `revolutionize`, `supercharge`, `streamline your`, `showcase the`, `unparalleled` |
+| `ContestedWord.yml` | Broad match at `suggestion`: `empower`, which has a real governance sense |
 | `CorporateCliche.yml` | `synergy`, `best-in-class`, `cutting-edge`, `holistic`, `transformative`, `mission-critical` |
 | `CorporateMetaphor.yml` | `north star`, `boil the ocean`, `low-hanging fruit`, `circle back`, `touch base`, figurative `double-click` |
 | `AssistantOpener.yml` | Chatbot throat-clearing: `Great question!`, `I'd be happy to help`, `Let's dive in`, `Buckle up` |
