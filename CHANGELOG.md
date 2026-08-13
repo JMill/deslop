@@ -4,6 +4,114 @@ Consumers pointed at `releases/latest/download/Deslop.zip` pick up each release 
 next `vale sync`. Pin a tag instead if you want to choose when that happens — see
 [README](README.md#pin-a-version).
 
+## v0.3.0 — 2026-08-12
+
+Flags the newer AI register: the "thoughtful essayist" voice that current models default
+into, which sounds like careful reasoning. Candidate tells were vetted adversarially against
+a real corpus before shipping; most did not survive, and the rejects are recorded below so
+they are not re-proposed.
+
+### Added — the candor family
+
+- **`PerformedCandor.yml`** — announcing sincerity instead of being sincere: `To be honest`,
+  `In all honesty`, `the honest answer is`, `Let's be honest`, `I'll be blunt`,
+  `If I'm being honest`, `Truth be told`, `Real talk`, `won't sugarcoat it`, and the bare
+  adverbs `Honestly` / `Frankly` / `Candidly`.
+
+  The adverbs are **anchored to the start of a sentence**, because each has an ordinary
+  manner sense that is not this tell — `State your tolerances honestly`, `practitioners who
+  will speak candidly`, `the piece has to be honest about what it validated`. Those now live
+  in `should-pass.md`. The rule is `raw` rather than `tokens` because Vale's `\b` wrapping
+  breaks an anchored token after `)`, a backtick, or a quote.
+
+- **`load-bearing` in `ContestedWord.yml`**, at `suggestion`. Its figurative sense attaches
+  to an open class of abstract nouns (`claim`, `assumption`, `context`, `proof point`,
+  `decision`, `logic`, `thesis`, `step`), so enumerating collocations caught 80 of 619 real
+  uses. Excluding the literal `load-bearing wall` needs a negative lookahead, and Vale
+  ignores lookarounds, ignores `exceptions:` on `existence`, and cannot filter it through a
+  multi-word vocabulary entry either. Broad match at `suggestion` is the only mechanism
+  left: every use is surfaced, nothing blocks, and a writer describing an actual wall
+  moves on.
+
+- **`genuinely` and `strikingly`** join `HollowIntensifier.yml`; **`Crucially`** joins
+  `ConjunctiveAdverbOpener.yml`. Both are density rules, so a single use stays silent.
+
+- **`Here's the catch / tension / trade-off`** and **`Let's unpack this`** join
+  `AssistantOpener.yml`, which already owned `Here's the thing` — the same construction
+  belongs in one home.
+
+### Changed
+
+- **`honestly` moved from `Hedging.yml` to `PerformedCandor.yml`** and is now anchored. It
+  is performed candor, not hedging. A copy in both files would double-flag every hit.
+
+### Fixed
+
+- **`tests/run.sh` now refuses to run against a shadowed working tree.** A previously synced
+  Deslop in Vale's shared styles directory silently overrides edited rule files while
+  brand-new files still load from the tree, so the suite tested a mix of old and new rules
+  and reported false positives that were not in the code. This is the consumer trap in
+  [README](README.md#upgrading-from-an-earlier-version), turned on the repo itself.
+
+### Added — the essayist register
+
+Eleven more rules covering the "thoughtful essayist" voice. Every token below was generated,
+then adversarially vetted against a 51-repo corpus; roughly a third of the candidates were
+cut for firing on ordinary technical prose, and the survivors are narrowed to the figurative
+sense. deslop goes from 22 rules to 34.
+
+- **`BorrowedRigor.yml`** — economics, optimisation, and reliability vocabulary used as
+  decoration: `doing the real work`, `first-order concern`, `an order of magnitude harder`,
+  `the delta between`, `necessary but not sufficient`, `asymmetric bet`, `compounding
+  advantage`, `conceptual surface area`, `the binding constraint`, `forcing function`,
+  `strictly better`, `tail risk here`, `the anatomy of`, `the failure mode here is`.
+  Each is narrowed so the technical sense survives — `second-order constraint`,
+  `compounding returns`, `reduce the surface area of the API`, and `the grammar of the
+  language` all stay silent.
+- **`CalibrationTheatre.yml`** — confidence scored as ornament: `Epistemic status`,
+  `I'm fairly confident`, `I'm 80% sure`, `I could be wrong here`, `I'm holding this
+  loosely`, `I don't want to overstate this`.
+- **`AnnouncedNoteworthiness.yml`** — the `worth <X>` family, now in one home:
+  `worth stating plainly`, `worth naming`, `worth sitting with`, `worth being precise
+  about`, `I should flag that`, `why this matters`.
+- **`WithheldPayoff.yml`** — a reveal promised instead of delivered: `where it gets
+  interesting`, `what nobody talks about`, `the quiet part`, `the uncomfortable truth`.
+- **`FalseDepthReframe.yml`** — relocating the question rather than answering it:
+  `the real question is`, `the question isn't whether X`, `the real problem is`.
+- **`FramingOffer.yml`**, **`AnnouncedSteelman.yml`**, **`Restatement.yml`**,
+  **`CadenceFragment.yml`**, **`ColonDrumroll.yml`**, **`LocativeClosure.yml`**.
+- **`RealityAdverb.yml`** — density cap at `max: 1`, so two of `actually` / `basically` /
+  `literally` / `in fact` in one paragraph alert and a single use never does.
+
+Existing rules absorbed the members of families they already owned, rather than opening
+second homes: `reasonable people disagree` and `both things are true` to `FalseBalance`,
+`not because X, but because Y` to `NotJustScaffold`, `a feature, not a bug` to
+`AntitheticalPair`, `and more importantly` to `FillerTransition`, `the right move is to`
+to `SlopVocab`, `to be clear,` / `to be fair,` / `I want to be careful here` to
+`PerformedCandor`, and `priors` to `ContestedWord`.
+
+**`it's worth noting` moved out of `SlopVocab.yml`** into `AnnouncedNoteworthiness.yml`,
+so the whole `worth <X>` family shares one home. `important to note` is a different frame
+and stays in `SlopVocab`.
+
+### Rejected
+
+Vetted against a real corpus and dropped — each fires on ordinary technical prose, and Vale
+offers no narrowing:
+
+- `heavy lifting` (a library genuinely doing the work), `the shape of the problem` (design
+  vocabulary), `gesture at` (a literal HCI verb), `in tension with` (statistical sense),
+  `non-trivial fraction` (standard unquantified-share hedge), `the crux of`, `worth
+  flagging`, `the key insight is`, `the interesting part is`, `the bigger picture`, `the
+  real question is`.
+- `the shape of` was shipped in `ContestedWord.yml` and then removed before release: it
+  matched 374 times across 14,168 files, dominated by the literal machine-learning sense
+  (`the shape of the kernel tensor`). Its literal objects are as open a class as its
+  figurative ones, so no collocation separates them.
+- A stance-adverb density rule (`genuinely`/`admittedly`/`crucially`/…) at `max: 3` fired on
+  nothing across 556k blocks; at `max: 1` it fired on legitimate contrast. The words that
+  earned a home were redistributed to the density rules that already own their families.
+
 ## v0.2.3 — 2026-07-27
 
 ### Changed

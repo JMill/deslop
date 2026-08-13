@@ -13,6 +13,7 @@ Deslop.ConjunctiveAdverbOpener	Notably
 Deslop.ConjunctiveAdverbOpener	Importantly
 Deslop.ConjunctiveAdverbOpener	Consequently
 Deslop.ConjunctiveAdverbOpener	Indeed
+Deslop.ConjunctiveAdverbOpener	Crucially
 
 Deslop.HollowIntensifier	incredibly
 Deslop.HollowIntensifier	extremely
@@ -23,5 +24,15 @@ Deslop.HollowIntensifier	highly
 Deslop.HollowIntensifier	remarkably
 Deslop.HollowIntensifier	utterly
 Deslop.HollowIntensifier	profoundly
+Deslop.HollowIntensifier	genuinely
+Deslop.HollowIntensifier	strikingly
+
+Deslop.RealityAdverb	actually
+Deslop.RealityAdverb	essentially
+Deslop.RealityAdverb	effectively
+Deslop.RealityAdverb	fundamentally
+Deslop.RealityAdverb	basically
+Deslop.RealityAdverb	literally
+Deslop.RealityAdverb	functionally
 
 Deslop.EmDashOveruse	—

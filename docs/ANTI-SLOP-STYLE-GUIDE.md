@@ -46,7 +46,7 @@ Run a passage through these. Each one targets a layer-3 failure.
 
 1. **Second-layer test.** Does the writing reason about its own claims, or only state
    them? Reasoning examines; assertion repeats.
-2. **Load-bearing test.** Take any sentence. If you delete it, does an argument break?
+2. **`Load-bearing` test.** Take any sentence. If you delete it, does an argument break?
    If nothing breaks, the sentence was decoration.
 3. **Deletion test.** Cut every adjective and intensifier. Does the meaning survive? The
    words that change the meaning were doing work; the rest were filler.
@@ -65,7 +65,7 @@ Run a passage through these. Each one targets a layer-3 failure.
 - Name the strongest counterargument before you answer it.
 - Every sentence carries an idea or it gets cut.
 - One qualifier, not two. Stacked hedges cancel out.
-- Cut the opener and the closer that only announce the shape of the piece.
+- Cut the opener and the closer that only announce what the piece will do.
 - Show with the specific instead of asserting with the abstract.
 - No em-dash pile-ups. Periods and natural breaks instead.
 - Vary how sentences open. Repeated `Moreover` and `Furthermore` mark a list wearing a

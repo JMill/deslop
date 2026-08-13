@@ -93,6 +93,22 @@ any of them; the suite is the only thing that will tell you.
   without complaint and still matches "test harness the". You cannot carve out exceptions
   this way; narrow the pattern with real context instead, or let consumers use a Vale
   vocabulary (`accept.txt` entries are filtered out of every rule's matches).
+- **`exceptions:` on an `existence` rule is accepted and ignored too.** Same silent
+  failure as lookarounds. And a *multi-word* `accept.txt` entry cannot stand in for it:
+  the vocabulary is matched against the alert's own text, so exempting `load-bearing wall`
+  never fires, because the alert text is `load-bearing`. Single-word entries (`Realm`)
+  do work. When a figurative sense must be flagged and a literal one spared, you have
+  exactly two options: enumerate the figurative collocations, or accept a broad match at
+  `suggestion` (see `ContestedWord.yml`). Enumeration only pays when the figurative class
+  is closed — `load-bearing` attaches to an open class of abstract nouns, and enumerating
+  them caught 80 of 619 real uses.
+- **An anchored tell belongs in `raw`, not `tokens`.** `(?:^|[.!?]\s+)honestly` works at
+  the start of a line, but Vale's `\b` wrapping silently kills the `[.!?]\s+` branch
+  whenever the character before the period is `)`, a backtick, or a quote — `\b` cannot
+  match between two non-word characters. The anchor looks right and half-works. `raw` is
+  not wrapped, so it behaves. The cost is that `check.py`'s branch audit skips `raw`
+  entirely, so pin every tell in `expected.tsv` by hand to buy that coverage back;
+  `PerformedCandor.yml` does exactly this.
 - **Typographic apostrophes are not normalised.** `don't` written with a plain `'` does
   not match `don’t`, and editors rewrite quotes routinely. Spell the class out:
   `don\s*['’]?t`. This applies to `tokens` and `raw` alike.
@@ -129,6 +145,15 @@ add those through composition: a second style directory listed alongside `Deslop
 `BasedOnStyles`. The mechanism is documented in [docs/ADOPTING.md](docs/ADOPTING.md) section 8.
 
 ## Commands
+
+A previously synced copy of Deslop in Vale's shared styles directory **shadows this working
+tree**. Vale merges that path in whenever the style name matches, and `StylesPath` cannot
+override it. The failure mode is vicious: a brand-new rule file still loads from the tree, so
+new rules fire while edits to existing rules do nothing, and the suite reports false positives
+and double-flags that are not in the code you are reading. `tests/run.sh` now refuses to run
+when it finds a shared copy that differs from `styles/Deslop`, and prints the `rm -rf` to fix
+it. This is the consumer-facing trap in [README.md](README.md#upgrading-from-an-earlier-version),
+turned on the repo itself.
 
 ```sh
 # The rule suite. Run this after every rule change.

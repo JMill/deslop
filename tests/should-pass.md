@@ -59,6 +59,29 @@ We streamline the build by caching the module graph.
 
 She said she would be happy to help with the review.
 
+## Argument vocabulary used to give advice, not to perform
+
+AnnouncedSteelman.yml catches the announcement, not the noun phrase. These are
+the sentences deslop's own craft guide is written in.
+
+Name the strongest counterargument before you answer it.
+
+The strongest objection is never named, so the reader cannot weigh it.
+
+## Candor adverbs in their manner sense
+
+These are the reason PerformedCandor.yml anchors its adverbs to the start of a
+sentence. Each one is an instruction to do something accurately, not a writer
+announcing sincerity.
+
+State your tolerances honestly and the shop will quote a better price.
+
+The reviewers answered every question frankly and in writing.
+
+Several practitioners agreed to speak candidly about the incident.
+
+The piece has to be honest about what it validated and what it did not.
+
 ## Terms of art that read like corporate filler
 
 The fund uses financial leverage of two to one.

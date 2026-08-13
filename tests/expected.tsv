@@ -89,4 +89,249 @@ Deslop.FalseBalance	remain to be seen
 Deslop.FalseWarmth	boded well
 Deslop.VagueAttribution	experts argued
 Deslop.VagueAttribution	sources said
-Deslop.SlopVocab	it's worth noting
+Deslop.AnnouncedNoteworthiness	it's worth noting
+
+# --- PerformedCandor ---
+# This rule is `raw`, and check.py's branch audit skips `raw` patterns: one
+# fixture line would satisfy the whole rule. These pins are what replaces that
+# coverage, so every tell is verified individually here or nowhere.
+Deslop.PerformedCandor	Honestly
+Deslop.PerformedCandor	Frankly
+Deslop.PerformedCandor	Candidly
+Deslop.PerformedCandor	To be honest
+Deslop.PerformedCandor	To be perfectly honest
+Deslop.PerformedCandor	To be brutally honest
+Deslop.PerformedCandor	In all honesty
+Deslop.PerformedCandor	The honest answer is
+Deslop.PerformedCandor	The honest truth is
+Deslop.PerformedCandor	Let me be blunt
+Deslop.PerformedCandor	Let's be honest
+Deslop.PerformedCandor	Let’s be direct
+Deslop.PerformedCandor	I'll be direct
+Deslop.PerformedCandor	I’ll be honest
+Deslop.PerformedCandor	If I'm being honest
+Deslop.PerformedCandor	Truth be told
+Deslop.PerformedCandor	Real talk
+Deslop.PerformedCandor	sugarcoat it
+Deslop.PerformedCandor	sugar-coat it
+Deslop.PerformedCandor	sugarcoated it
+
+# --- families folded into the rule that already owned them ---
+Deslop.AssistantOpener	Here's the catch
+Deslop.AssistantOpener	Here's the tension
+Deslop.AssistantOpener	Here's the trade-off
+Deslop.AssistantOpener	Here's the tradeoff
+Deslop.AssistantOpener	Let's unpack this
+Deslop.AssistantOpener	Let’s unpack that
+Deslop.ContestedWord	load-bearing
+
+# --- newer-register rules (see CHANGELOG) ---
+Deslop.BorrowedRigor	doing the real work
+Deslop.BorrowedRigor	doing the actual work
+Deslop.BorrowedRigor	doing silent work
+Deslop.BorrowedRigor	doing structural work
+Deslop.BorrowedRigor	doing quiet work
+Deslop.BorrowedRigor	the operative word
+Deslop.BorrowedRigor	first-order concern
+Deslop.BorrowedRigor	second-order question
+Deslop.BorrowedRigor	third-order problem
+Deslop.BorrowedRigor	first-order risk
+Deslop.BorrowedRigor	an order of magnitude harder
+Deslop.BorrowedRigor	an order of magnitude easier
+Deslop.BorrowedRigor	exponentially simpler
+Deslop.BorrowedRigor	exponentially more important
+Deslop.BorrowedRigor	the delta between
+Deslop.BorrowedRigor	necessary but not sufficient
+Deslop.BorrowedRigor	asymmetric bet
+Deslop.BorrowedRigor	asymmetric upside
+Deslop.BorrowedRigor	the asymmetry here
+Deslop.BorrowedRigor	compounding advantage
+Deslop.BorrowedRigor	compounding edge
+Deslop.BorrowedRigor	compounding moat
+Deslop.BorrowedRigor	political surface area
+Deslop.BorrowedRigor	regulatory surface area
+Deslop.BorrowedRigor	conceptual surface area
+Deslop.BorrowedRigor	the binding constraint
+Deslop.BorrowedRigor	forcing function
+Deslop.BorrowedRigor	strictly better
+Deslop.BorrowedRigor	strictly worse
+Deslop.BorrowedRigor	strictly dominate
+Deslop.BorrowedRigor	tail risk here
+Deslop.BorrowedRigor	tail risk of being
+Deslop.BorrowedRigor	the anatomy of
+Deslop.BorrowedRigor	the choreography of
+Deslop.BorrowedRigor	the epistemology of
+Deslop.BorrowedRigor	the failure mode here is
+Deslop.AnnouncedNoteworthiness	it is also worth noting
+Deslop.AnnouncedNoteworthiness	worth stating
+Deslop.AnnouncedNoteworthiness	worth flagging that
+Deslop.AnnouncedNoteworthiness	I should flag that
+Deslop.AnnouncedNoteworthiness	worth sitting with
+Deslop.AnnouncedNoteworthiness	worth being precise about
+Deslop.AnnouncedNoteworthiness	worth being explicit here
+Deslop.AnnouncedNoteworthiness	why this matters
+Deslop.CalibrationTheatre	Epistemic status
+Deslop.CalibrationTheatre	My confidence here is low
+Deslop.CalibrationTheatre	The confidence here is medium
+Deslop.CalibrationTheatre	My confidence in that is high
+Deslop.CalibrationTheatre	I'm fairly confident
+Deslop.CalibrationTheatre	I’m moderately uncertain
+Deslop.CalibrationTheatre	I am reasonably confident
+Deslop.CalibrationTheatre	I am moderately uncertain
+Deslop.CalibrationTheatre	I'm about 90% confident
+Deslop.CalibrationTheatre	I'm roughly 80% sure
+Deslop.CalibrationTheatre	I'm 70% confident
+Deslop.CalibrationTheatre	I could be wrong here
+Deslop.CalibrationTheatre	I might well be wrong about
+Deslop.CalibrationTheatre	I may be wrong on
+Deslop.CalibrationTheatre	I am holding that loosely
+Deslop.CalibrationTheatre	I don't have a strong view
+Deslop.CalibrationTheatre	I don't have strong prior
+Deslop.CalibrationTheatre	don’t want to overstate
+Deslop.CalibrationTheatre	do not want to overclaim
+Deslop.CalibrationTheatre	Not wanting to oversell
+Deslop.CalibrationTheatre	Without overclaiming
+Deslop.CalibrationTheatre	Without overselling
+Deslop.CalibrationTheatre	I won't oversell
+Deslop.WithheldPayoff	where it gets interesting
+Deslop.WithheldPayoff	where things get weird
+Deslop.WithheldPayoff	where that gets spicy
+Deslop.WithheldPayoff	nobody talks about
+Deslop.WithheldPayoff	no one is talking about
+Deslop.WithheldPayoff	nobody wants to admit
+Deslop.WithheldPayoff	the quiet part
+Deslop.WithheldPayoff	the uncomfortable truth
+Deslop.WithheldPayoff	the unglamorous part
+Deslop.FalseDepthReframe	the real question is
+Deslop.FalseDepthReframe	the more interesting question is
+Deslop.FalseDepthReframe	the deeper question here is
+Deslop.FalseDepthReframe	the real question isn't whether
+Deslop.FalseDepthReframe	the question is not how
+Deslop.FalseDepthReframe	the question isn’t why
+Deslop.FalseDepthReframe	the real question isn't just
+Deslop.FalseDepthReframe	the question isn’t only
+Deslop.FalseDepthReframe	the real problem is
+Deslop.FalseDepthReframe	the actual issue isn't
+Deslop.FalseDepthReframe	the real story was
+Deslop.FalseDepthReframe	the real answer wasn't
+Deslop.FalseDepthReframe	the real culprit wasn't
+Deslop.Restatement	In other words
+Deslop.Restatement	Put another way
+Deslop.Restatement	To put it another way
+Deslop.Restatement	Said differently
+Deslop.Restatement	Stated differently
+Deslop.Restatement	Put differently,
+Deslop.Restatement	Put simply,
+Deslop.Restatement	Which is to say
+Deslop.Restatement	That is to say
+Deslop.Restatement	Which is why
+Deslop.Restatement	Which is exactly
+Deslop.Restatement	Which is precisely
+Deslop.CadenceFragment	that's the whole point
+Deslop.CadenceFragment	that's the entire idea
+Deslop.CadenceFragment	that's exactly the point
+Deslop.CadenceFragment	that's the whole thing
+Deslop.CadenceFragment	that's the whole tool
+Deslop.CadenceFragment	that's the whole trick
+Deslop.CadenceFragment	that's the whole story
+Deslop.CadenceFragment	that's the whole job
+Deslop.CadenceFragment	that's the whole argument
+Deslop.CadenceFragment	that's the whole list
+Deslop.CadenceFragment	that's the whole fix
+Deslop.CadenceFragment	that's the whole system
+Deslop.CadenceFragment	that's the whole premise
+Deslop.CadenceFragment	That's it. That's the
+Deslop.CadenceFragment	And that's the point
+Deslop.CadenceFragment	That's fine
+Deslop.CadenceFragment	and that's okay
+Deslop.CadenceFragment	But that's OK
+Deslop.CadenceFragment	but that's a good thing
+Deslop.CadenceFragment	and that's not a bad thing
+Deslop.CadenceFragment	And that's by design
+Deslop.CadenceFragment	and that's deliberate
+Deslop.CadenceFragment	Full stop.
+Deslop.CadenceFragment	Period.
+Deslop.CadenceFragment	Every time.
+Deslop.CadenceFragment	Always.
+Deslop.CadenceFragment	Never.
+Deslop.CadenceFragment	That’s the whole story
+Deslop.ColonDrumroll	The answer is simple:
+Deslop.ColonDrumroll	The reason is straightforward:
+Deslop.ColonDrumroll	The problem is this:
+Deslop.ColonDrumroll	The difference is obvious:
+Deslop.ColonDrumroll	The catch is simple:
+Deslop.ColonDrumroll	The upshot is this:
+Deslop.ColonDrumroll	The issue is straightforward:
+Deslop.ColonDrumroll	The question is this:
+Deslop.ColonDrumroll	The point is this:
+Deslop.ColonDrumroll	The trick is simple:
+Deslop.ColonDrumroll	The fix is obvious:
+Deslop.ColonDrumroll	come down to one thing:
+Deslop.ColonDrumroll	comes down to two numbers:
+Deslop.ColonDrumroll	came down to three constraints:
+Deslop.ColonDrumroll	coming down to a single tension:
+Deslop.ColonDrumroll	boil down to this:
+Deslop.ColonDrumroll	boils down to one question:
+Deslop.ColonDrumroll	boiled down to two objections:
+Deslop.ColonDrumroll	boiling down to three words:
+Deslop.LocativeClosure	where the real work happens
+Deslop.LocativeClosure	where the real work happened
+Deslop.LocativeClosure	where the magic lives
+Deslop.LocativeClosure	where the argument begins
+Deslop.LocativeClosure	where the difficulty starts
+Deslop.LocativeClosure	where the hard part is
+Deslop.LocativeClosure	where the interesting part happens
+Deslop.FramingOffer	One way to think about this
+Deslop.FramingOffer	Another way to think about it
+Deslop.FramingOffer	Another way to think about that
+Deslop.FramingOffer	The right way to think about
+Deslop.FramingOffer	The best way to think about
+Deslop.FramingOffer	The better way to think about
+Deslop.FramingOffer	The wrong way to think about
+Deslop.FramingOffer	The only way to think about
+Deslop.FramingOffer	Think of it as
+Deslop.FramingOffer	Think of this as
+Deslop.FramingOffer	Think of that as
+Deslop.FramingOffer	To make this concrete
+Deslop.FramingOffer	To make that concrete
+Deslop.FramingOffer	To make it concrete
+Deslop.AnnouncedSteelman	steelman
+Deslop.AnnouncedSteelman	steelmans
+Deslop.AnnouncedSteelman	steel-manned
+Deslop.AnnouncedSteelman	steelmanning
+Deslop.AnnouncedSteelman	The strongest version of the argument
+Deslop.AnnouncedSteelman	The strongest form of this case
+Deslop.AnnouncedSteelman	The strongest version of that claim
+Deslop.AnnouncedSteelman	The strongest form of his objection
+Deslop.AnnouncedSteelman	The strongest version of her view
+Deslop.AnnouncedSteelman	The strongest form of their position
+Deslop.AnnouncedSteelman	The most charitable reading
+Deslop.AnnouncedSteelman	The most charitable interpretation
+Deslop.AnnouncedSteelman	The most charitable version
+Deslop.PerformedCandor	To be clear
+Deslop.PerformedCandor	To be fair
+Deslop.PerformedCandor	I want to be careful here
+Deslop.PerformedCandor	I need to be careful about
+Deslop.PerformedCandor	Let me be careful not
+Deslop.PerformedCandor	Let me be precise about
+Deslop.PerformedCandor	Let me be concrete about
+Deslop.PerformedCandor	I'll be explicit about
+Deslop.PerformedCandor	I'll be specific about
+Deslop.FalseBalance	reasonable people disagree
+Deslop.FalseBalance	reasonable people differ
+Deslop.FalseBalance	both things are true
+Deslop.FalseBalance	both can be true at once
+Deslop.NotJustScaffold	not just fast but also
+Deslop.NotJustScaffold	not because it was risky, but because
+Deslop.AntitheticalPair	It's not a bug. It's
+Deslop.AntitheticalPair	a feature, not a bug
+Deslop.AntitheticalPair	a bug, not a feature
+Deslop.FillerTransition	And, more importantly
+Deslop.FillerTransition	But more important
+Deslop.ContestedWord	my priors
+Deslop.ContestedWord	updated my prior
+Deslop.SlopVocab	The right move is to
+Deslop.SlopVocab	move isn't to
+Deslop.SlopVocab	move isn’t to
+Deslop.SlopVocab	The move here is
+Deslop.SlopVocab	The move here was

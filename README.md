@@ -10,30 +10,51 @@ Each rule family lives in its own file under `styles/Deslop/`:
 
 | File | Catches |
 | --- | --- |
-| `SlopVocab.yml` | Stock words and phrases with no one-word swap: `delve`, `tapestry`, `plethora`, `leverage`, `seamless`, `harness the power`, `a testament to`, and more |
+| `SlopVocab.yml` | Stock words and phrases with no one-word swap: `delve`, `tapestry`, `plethora`, `leverage`, `seamless`, `harness the power`, `a testament to`, `the right move is to`, and more |
 | `Substitutions.yml` | One-to-one swaps: `robust`->`strong`, `crucial`->`important`, `comprehend`->`understand`, `utilize`->`use` |
 | `MarketingVerb.yml` | Launch-copy verbs: `revolutionize`, `supercharge`, `streamline your`, `showcase the`, `unparalleled` |
-| `ContestedWord.yml` | Broad match at `suggestion`: `empower`, which has a real governance sense |
+| `ContestedWord.yml` | Broad match at `suggestion`, for words with a real domain sense: `empower` (governance), `load-bearing` (structural), `priors` (Bayesian) |
+| `PerformedCandor.yml` | Announced sincerity: `To be honest`, `Frankly`, `Let's be honest`, `I'll be blunt`, `Truth be told`, `the honest answer is` |
 | `CorporateCliche.yml` | `synergy`, `best-in-class`, `cutting-edge`, `holistic`, `transformative`, `mission-critical` |
 | `CorporateMetaphor.yml` | `north star`, `boil the ocean`, `low-hanging fruit`, `circle back`, `touch base`, figurative `double-click` |
-| `AssistantOpener.yml` | Chatbot throat-clearing: `Great question!`, `I'd be happy to help`, `Let's dive in`, `Buckle up` |
+| `AssistantOpener.yml` | Chatbot throat-clearing: `Great question!`, `I'd be happy to help`, `Let's dive in`, `Buckle up`, `Here's the thing/catch/trade-off`, `Let's unpack this` |
 | `AssistantCloser.yml` | Chatbot sign-offs: `I hope this helps`, `Let me know if you have questions`, `Is there anything else` |
-| `Hedging.yml` | `honestly`, `I think`, `arguably`, `perhaps`, `somewhat`, `to some extent` |
+| `Hedging.yml` | `I think`, `arguably`, `perhaps`, `somewhat`, `to some extent` |
 | `OpenerCliche.yml` | Stock openers: `In today's world`, `In an era of`, `In a world where` |
-| `NotJustScaffold.yml` | The `not just X but Y` contrast scaffold |
-| `AntitheticalPair.yml` | `It's not X. It's Y.` sentence pairs |
+| `NotJustScaffold.yml` | The `not just X but Y` and `not because X, but because Y` contrast scaffolds |
+| `AntitheticalPair.yml` | `It's not X. It's Y.` sentence pairs, and `a feature, not a bug` |
 | `VagueAttribution.yml` | `experts say`, `research shows`, `many believe`, `it is widely believed` |
 | `HollowCloser.yml` | `in conclusion`, `to sum up`, `at the end of the day`, `the bottom line is` |
-| `FillerTransition.yml` | `Having examined...`, `with that said`, `first and foremost` |
+| `FillerTransition.yml` | `Having examined...`, `with that said`, `first and foremost`, `and more importantly` |
 | `FalseWarmth.yml` | `fascinating space`, `poised to`, `groundbreaking`, `bodes well` |
-| `FalseBalance.yml` | `both have merit`, `remains to be seen`, `only time will tell` |
+| `FalseBalance.yml` | `both have merit`, `remains to be seen`, `only time will tell`, `reasonable people disagree`, `both things are true` |
 | `HedgeCascade.yml` | Stacked qualifiers: `could potentially`, `may be able to`, `might possibly` |
 | `EmDashOveruse.yml` | More than one em-dash per paragraph |
 | `ConjunctiveAdverbOpener.yml` | Repeated `Moreover / Furthermore / Additionally` openers |
-| `HollowIntensifier.yml` | A pile-up of `incredibly / extremely / very / really` |
+| `HollowIntensifier.yml` | A pile-up of `incredibly / extremely / very / really / genuinely / strikingly` |
+| `RealityAdverb.yml` | Two or more of `actually / basically / literally / in fact` in one paragraph |
+
+The rules below catch the newer register — the "thoughtful essayist" voice that
+reads like careful reasoning:
+
+| File | Catches |
+| --- | --- |
+| `BorrowedRigor.yml` | Economics and reliability vocabulary as decoration: `doing the real work`, `first-order concern`, `an order of magnitude harder`, `the binding constraint`, `forcing function`, `strictly better`, `compounding advantage` |
+| `CalibrationTheatre.yml` | Confidence scored as ornament: `Epistemic status`, `I'm fairly confident`, `I could be wrong here`, `I don't want to overstate this` |
+| `AnnouncedNoteworthiness.yml` | `it's worth noting`, `worth stating plainly`, `worth sitting with`, `I should flag that`, `why this matters` |
+| `WithheldPayoff.yml` | Promised reveals: `where it gets interesting`, `what nobody talks about`, `the quiet part`, `the uncomfortable truth` |
+| `FalseDepthReframe.yml` | `the real question is`, `the question isn't whether X`, `the real problem is` — relocating the question instead of answering it |
+| `FramingOffer.yml` | `one way to think about this is`, `the right way to think about it`, `think of it as`, `to make this concrete` |
+| `AnnouncedSteelman.yml` | `let me steelman that`, `the strongest version of the argument`, `the most charitable reading` |
+| `Restatement.yml` | `in other words`, `put another way`, `which is to say` — restatement standing in for reasoning |
+| `CadenceFragment.yml` | `That's the whole point.`, `and that's fine`, `Full stop.` |
+| `ColonDrumroll.yml` | `The answer is simple:` — announcing the answer instead of giving it |
+| `LocativeClosure.yml` | `where the real work happens`, `where the magic lives` |
 
 Levels map to Vale severities: `error` is red, `warning` is yellow, `suggestion` is green.
-Everything here ships as a warning except intensifier density, which is a suggestion.
+Everything here ships as a warning except `ContestedWord`, `HollowIntensifier`, and
+`RealityAdverb`, which are suggestions — the first because those words have a real
+domain sense, the other two because they measure density and a single use is fine.
 Nothing ships as an error: which tells are bad enough to block a build is your call,
 not the package's, so promote the ones you care about (see [Customize](#customize)).
 
@@ -84,7 +105,7 @@ start failing your build without anything changing on your side. To decide when 
 happens, point at a tag instead:
 
 ```ini
-Packages = https://github.com/JMill/deslop/releases/download/v0.2.0/Deslop.zip
+Packages = https://github.com/JMill/deslop/releases/download/v0.3.0/Deslop.zip
 ```
 
 Vale caches by URL, so switching to a pinned tag also makes `vale sync` reproducible.
@@ -106,7 +127,7 @@ rm -rf "$HOME/.local/share/vale/styles/Deslop"                 # Linux shared co
 vale sync
 ```
 
-Confirm you got the whole package — v0.2.0 ships 20 rule files:
+Confirm you got the whole package — v0.3.0 ships 34 rule files:
 
 ```sh
 ls styles/Deslop/*.yml | wc -l

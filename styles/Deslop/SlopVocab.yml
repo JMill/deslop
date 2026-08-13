@@ -23,8 +23,9 @@ tokens:
   - 'ever[-\s](?:evolving|changing|expanding)'
   - 'fast[-\s]paced\s+world'
   - 'at\s+the\s+forefront'
-  - "it\\s*['\u2019]s\\s+(?:also\\s+)?worth\\s+noting"
-  - 'it\s+is\s+(?:also\s+)?worth\s+noting'
+  # `it is (also) worth noting` is NOT here: AnnouncedNoteworthiness.yml owns the
+  # whole `worth <gerund>` family so it cannot report twice. `important to note`
+  # is a different frame (announcing importance, not noteworthiness) and stays.
   - "it\\s*['\u2019]s\\s+important\\s+to\\s+note"
   - 'it\s+is\s+important\s+to\s+note'
   - 'when\s+it\s+comes\s+to'
@@ -56,3 +57,11 @@ tokens:
   # Scoped to the verb sense that takes an object. Bare `leverage` fires on
   # `financial leverage`, which is a term of art, not slop.
   - 'leverag(?:e|es|ed|ing)\s+(?:a|an|the|our|your|its|their)\b'
+  # `move` as the essayist's noun for a correct strategy. The trailing `to` is
+  # required, which rules out the game sense (`the right move is Nf3`). The
+  # residual false positive is relocation -- `the right move is to Denver in
+  # March` -- which cannot be excluded, because the infinitive and the
+  # preposition are the same string and Vale ignores lookarounds. Rare enough to
+  # accept, and named here so nobody rediscovers it as a bug.
+  - "the\\s+(?:right|real|actual|correct|smart|obvious)\\s+move\\s+(?:here\\s+)?(?:is|was|isn\\s*['’]?t|wasn\\s*['’]?t)\\s+to"
+  - 'the\s+move\s+here\s+(?:is|was)'
