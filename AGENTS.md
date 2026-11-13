@@ -4,6 +4,21 @@ deslop is a [Vale](https://vale.sh) style package that flags AI-slop in prose: t
 phrases, hedges, and structural tics that mark machine-written text. It ships as a release
 asset (`Deslop.zip`) that other repos consume through Vale's `Packages` mechanism.
 
+## Choose the task
+
+| Task | Start here |
+| --- | --- |
+| Add or narrow a rule | [Writing a rule](#writing-a-rule), `styles/Deslop/`, and the paired positive/negative fixtures in `tests/`. |
+| Adopt deslop elsewhere | [docs/ADOPTING.md](docs/ADOPTING.md); the consumer config differs from this repo's own config. |
+| Diagnose unexpected alerts | [Gotchas](#gotchas-that-cost-real-debugging-time), then [Commands](#commands) for the shared-style shadowing check. |
+| Publish a release | [Cutting a release](#cutting-a-release), [CHANGELOG.md](CHANGELOG.md), and `.github/workflows/release.yml`. |
+
+For documentation changes, run `vale --config .vale.ini AGENTS.md CLAUDE.md README.md`
+and `git diff --check`. Rule changes require `tests/run.sh`; record the command
+and result in the PR. Keep consumer-facing instructions in the adopting guide
+and rule-authoring instructions here. [CLAUDE.md](CLAUDE.md) routes Claude to
+this same contract.
+
 ## Layout
 
 | Path | What it is |

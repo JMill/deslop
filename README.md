@@ -1,5 +1,7 @@
 # deslop
 
+**AI agents:** start at [AGENTS.md](AGENTS.md) for the reading order, task map, and verification guidance. Claude also has a [CLAUDE.md](CLAUDE.md) entry point.
+
 A [Vale](https://vale.sh) style package that flags AI-slop in prose. It catches the
 phrases, hedges, and structural tics that mark machine-generated text, then points
 you at a plainer rewrite.
